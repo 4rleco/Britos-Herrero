@@ -3,16 +3,18 @@
 #include <iostream>
 #include <exception>
 
-void Window::set(int width, int height, std::string title)
+void Window::set(int width, int height, const char* title)
 {
 	try
 	{
-		if (!glfwInit())
+		if (glfwInit())
 		{
 			windowWidth = width;
 			windowHeight = height;
 
-			window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+			window = glfwCreateWindow(width, height, title, NULL, NULL);
+
+			hasStarted = true;
 		}
 		else
 			throw std::exception("The GLFW library is missing");
@@ -28,31 +30,19 @@ void Window::close()
 	glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-/* Cleans all the leftover resources left by the window and the window itself */
-void Window::cleanResources()
-{
-	// Cleans all the resources of the window and destroys it
-	glfwDestroyWindow(window);
-
-	// Close the GLFW functions
-	glfwTerminate();
-}
-
-void Window::clear()
+void Window::clean()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-}
-
-void Window::update()
-{
-	glfwSwapBuffers(window);
-
-	glfwPollEvents();
 }
 
 bool Window::shouldClose()
 {
 	return glfwWindowShouldClose(window);
+}
+
+bool Window::getStatus() const
+{
+	return hasStarted;
 }
 
 int Window::getWidth() const
@@ -63,4 +53,9 @@ int Window::getWidth() const
 int Window::getHeight() const
 {
 	return windowHeight;
+}
+
+GLFWwindow* Window::getWindow() const
+{
+	return window;
 }

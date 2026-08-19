@@ -1,22 +1,29 @@
-#include <GLFW/glfw3.h>
-
 #include "Window.h"
+#include "Renderer.h"
 #include "Basegame.h"
 
-int BaseGame::RunEngine(int width, int height, std::string title)
+int BaseGame::RunEngine(int width, int height, const char* title)
 {
 	Window window;
+	Renderer renderer;
 
-	window.set(width, height, title);
+	window.set(700, 500, "A");
 
-	if (!window.shouldClose())
+	renderer.setWindowContext(window.getWindow());
+
+	if (window.getStatus())
 	{
-		window.clear();
+		while (!window.shouldClose())
+		{
+			window.clean();
 
-		window.update();
+			renderer.drawTriangle(0, 0, 50);
+
+			renderer.updateBuffers(window.getWindow());
+		}
+
+		renderer.cleanData(window.getWindow());
 	}
-
-	window.cleanResources();
 
 	/*GLFWwindow* window;
 
