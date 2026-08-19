@@ -2,6 +2,7 @@
 
 #include "Window/Window .h"
 
+int BaseGame::RunEngine(int width, int height, const char* title)
 {
 	Window window;
 

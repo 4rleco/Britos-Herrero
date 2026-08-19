@@ -4,5 +4,9 @@ void main()
 {
 	Game game;
 
-	game.RunEngine();
+	int width = 800;
+	int height = 640;
+	const char* title = "GAME";
+
+	game.RunEngine(width, height, title);
 }

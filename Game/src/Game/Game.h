@@ -6,4 +6,6 @@ class Game : public BaseGame
 {
 public:
 	Game();
+
+	~Game();
 };
