@@ -6,11 +6,24 @@
 
 using namespace std;
 
-void Window::set(int width, int height, const char* title)
+Window::Window()
+{
+	window = nullptr;
+
+	windowWidth = 0;
+	windowHeight = 0;
+}
+
+Window::~Window()
+{
+
+}
+
+void Window::InitWindow(int width, int height, const char* title)
 {
 	try
 	{
-		if (!glfwInit())
+		if (glfwInit())
 		{
 			windowWidth = width;
 			windowHeight = height;
@@ -26,44 +39,41 @@ void Window::set(int width, int height, const char* title)
 	}
 }
 
-void Window::close()
+void Window::Close()
 {
 	glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-/* Cleans all the leftover resources left by the window and the window itself */
-void Window::cleanResources()
+void Window::CleanResources()
 {
-	// Cleans all the resources of the window and destroys it
 	glfwDestroyWindow(window);
 
-	// Close the GLFW functions
 	glfwTerminate();
 }
 
-void Window::clear()
+void Window::Clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Window::update()
+void Window::Update()
 {
-	glfwSwapBuffers(window);
-
 	glfwPollEvents();
+
+	glfwSwapBuffers(window);
 }
 
-bool Window::shouldClose()
+bool Window::ShouldClose()
 {
 	return glfwWindowShouldClose(window);
 }
 
-int Window::getWidth() const
+int Window::GetWidth() const
 {
 	return windowWidth;
 }
 
-int Window::getHeight() const
+int Window::GetHeight() const
 {
 	return windowHeight;
 }

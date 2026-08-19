@@ -4,33 +4,40 @@
 
 #include "EngineAPI.h"
 
-ENGINE_API class Window
+class Window
 {
-
 private:
 	GLFWwindow* window;
 
-	int windowWidth = 0;
-	int windowHeight = 0;
+	int windowWidth;
+	int windowHeight;
 
 public:
+	Window();
+
+	~Window();
+
 	/* Builts the structure of the window */
-	void set(int width, int height, const char* title);
+	void InitWindow(int width, int height, const char* title);
+
 	/* Close the window */
-	void close();
+	void Close();
+
 	/* Cleans all the resources left by the window (Use it when the program ends) */
-	void cleanResources();
+	void CleanResources();
 
 	/* Cleans the actual frame (Goes at the start of the drawing) */
-	void clear();
+	void Clear();
+
 	/* Switchs the buffers and configurates the next frame (Needed for the correct working of the program) */
-	void update();
+	void Update();
 
 	/* Checks if the window has to be closed */
-	bool shouldClose();
+	bool ShouldClose();
 
 	/* Returns width */
-	int getWidth() const;
+	int GetWidth() const;
+
 	/* Returns height */
-	int getHeight() const;
+	int GetHeight() const;
 };
