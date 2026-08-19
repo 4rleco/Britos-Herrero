@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)EngineDLL\lib</OutDir>
-    <IntDir>$(SolutionDir)EngineDLL\obj</IntDir>
+    <OutDir>$(ProjectDir)EngineDLL\lib</OutDir>
+    <IntDir>$(ProjectDir)EngineDLL\obj</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\$(Configuration)\</IntDir>
+    <OutDir>$(ProjectDir)EngineDLL\lib</OutDir>
+    <IntDir>$(ProjectDir)EngineDLL\obj</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
