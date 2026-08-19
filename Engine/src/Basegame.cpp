@@ -1,35 +1,23 @@
-#include <GLFW/glfw3.h>
-
 #include "Basegame.h"
 
-int BaseGame::RunEngine()
+#include "Window/Window .h"
+
 {
-	GLFWwindow* window;
+	Window window;
+
+	window.InitWindow(width, height, title);
 
 	if (!glfwInit())
 		return -1;
 
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-	if (!window)
+	while(!window.ShouldClose())
 	{
-		glfwTerminate();
-		return -1;
+		window.Clear();
+
+		window.Update();
 	}
 
-	glfwMakeContextCurrent(window);
+	window.Close();
 
-	while (!glfwWindowShouldClose(window))
-	{
-
-		glClear(GL_COLOR_BUFFER_BIT);
-
-
-		glfwSwapBuffers(window);
-
-
-		glfwPollEvents();
-	}
-
-	glfwTerminate();
 	return 0;
 }

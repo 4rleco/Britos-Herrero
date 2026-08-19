@@ -2,8 +2,9 @@
 
 #include "EngineAPI.h"
 
-ENGINE_API class BaseGame
+#include "Window/Window .h"
+
+class BaseGame
 {
 public:
-	ENGINE_API int RunEngine();
 };
