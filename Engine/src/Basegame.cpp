@@ -1,18 +1,34 @@
 #include <GLFW/glfw3.h>
 
+#include "Window.h"
 #include "Basegame.h"
 
-int BaseGame::RunEngine()
+int BaseGame::RunEngine(int width, int height, std::string title)
 {
-	GLFWwindow* window;
+	Window window;
+
+	window.set(width, height, title);
+
+	if (!window.shouldClose())
+	{
+		window.clear();
+
+		window.update();
+	}
+
+	window.cleanResources();
+
+	/*GLFWwindow* window;
 
 	if (!glfwInit())
 		return -1;
 
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
+
 	if (!window)
 	{
 		glfwTerminate();
+
 		return -1;
 	}
 
@@ -30,6 +46,7 @@ int BaseGame::RunEngine()
 		glfwPollEvents();
 	}
 
-	glfwTerminate();
+	glfwTerminate();*/
+
 	return 0;
 }

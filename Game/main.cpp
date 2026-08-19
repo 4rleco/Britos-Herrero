@@ -4,5 +4,5 @@ void main()
 {
 	BaseGame game;
 
-	game.RunEngine();
+	game.RunEngine(700, 500, "A");
 }
