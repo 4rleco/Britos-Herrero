@@ -44,23 +44,9 @@ void Window::Close()
 	glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-void Window::CleanResources()
-{
-	glfwDestroyWindow(window);
-
-	glfwTerminate();
-}
-
 void Window::Clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-}
-
-void Window::Update()
-{
-	glfwPollEvents();
-
-	glfwSwapBuffers(window);
 }
 
 bool Window::ShouldClose()
@@ -76,4 +62,9 @@ int Window::GetWidth() const
 int Window::GetHeight() const
 {
 	return windowHeight;
+}
+
+GLFWwindow* Window::GetWindow() const
+{
+	return window;
 }
