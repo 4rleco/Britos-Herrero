@@ -2,8 +2,10 @@
 
 #include "EngineAPI.h"
 
-class BaseGame
+class ENGINE_API BaseGame
 {
 public:
-	ENGINE_API int RunEngine(int width, int height, const char* title);
+	int RunEngine(int width, int height, const char* title);
+
+	virtual void Update();
 };
