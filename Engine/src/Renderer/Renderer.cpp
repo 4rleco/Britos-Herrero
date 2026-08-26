@@ -6,9 +6,30 @@ Renderer& Renderer::GetInstance()
 	return instance;
 }
 
+void Renderer::CheckGlewStatus()
+{
+	if (glewInit != GLEW_OK)
+		std::cout << " GLEW OKn't" << std::endl;
+}
+
 void Renderer::SetWindowContext(GLFWwindow* window)
 {
 	glfwMakeContextCurrent(window);
+}
+
+void Renderer::BindBuffers(float* vertices)
+{
+	unsigned int VBO;
+	glGenBuffers(1, &VBO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * 6, &vertices, GL_STATIC_DRAW);
+}
+
+void Renderer::Draw()
+{
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 /* Switchs the buffers and configurates the next frame (Needed for the correct working of the program) */

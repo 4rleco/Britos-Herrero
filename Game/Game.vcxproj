@@ -94,7 +94,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Engine\EngineDLL\lib\Engine.dll" "$(OutDir)" /y /i /s
-xcopy "$(SolutionDir)Engine\EngineDLL\lib\glfw3.dll" "$(OutDir)" /y /i /s</Command>
+xcopy "$(SolutionDir)Engine\EngineDLL\lib\glfw3.dll" "$(OutDir)" /y /i /s
+xcopy "$(SolutionDir)Engine\EngineDLL\lib\glew32.dll" "$(OutDir)" /y /i /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,7 +118,8 @@ xcopy "$(SolutionDir)Engine\EngineDLL\lib\glfw3.dll" "$(OutDir)" /y /i /s</Comma
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)Engine\EngineDLL\lib\Engine.dll" "$(OutDir)" /y /i /s
-xcopy "$(SolutionDir)Engine\EngineDLL\lib\glfw3.dll" "$(OutDir)" /y /i /s</Command>
+xcopy "$(SolutionDir)Engine\EngineDLL\lib\glfw3.dll" "$(OutDir)" /y /i /s
+xcopy "$(SolutionDir)Engine\EngineDLL\lib\glew32.dll" "$(OutDir)" /y /i /s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
