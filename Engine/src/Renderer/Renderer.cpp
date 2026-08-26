@@ -28,18 +28,17 @@ void Renderer::SetWindowContext(GLFWwindow* window)
 	glfwMakeContextCurrent(window);
 }
 
-void Renderer::BindBuffers(float* vertices)
+void Renderer::BindBuffers()
 {
-	unsigned int VBO;
 	glGenBuffers(1, &VBO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6, vertices, GL_STATIC_DRAW);
 }
 
-void Renderer::Draw()
+void Renderer::Draw(float* vertices)
 {
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * 9, vertices, GL_STATIC_DRAW);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
@@ -59,6 +58,8 @@ void Renderer::CleanWindow()
 /* Cleans all the leftover resources left by the window and the window itself */
 void Renderer::CleanData(GLFWwindow* window)
 {
+	glDeleteBuffers(1, &VBO);
+
 	// Cleans all the resources of the window and destroys it
 	glfwDestroyWindow(window);
 

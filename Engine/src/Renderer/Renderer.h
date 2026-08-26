@@ -8,6 +8,7 @@
 class Renderer
 {
 private:
+	unsigned int VBO;
 	Renderer() = default;
 
 public:
@@ -19,9 +20,9 @@ public:
 	void SetWindowContext(GLFWwindow* window);
 
 	// binds and generete vertex buffers
-	void BindBuffers(float* vertices);
+	void BindBuffers();
 
-	void Draw();
+	void Draw(float* vertices);
 
 	// Switchs the buffers and configurates the next frame (Needed for the correct working of the program)
 	void UpdateBuffers(GLFWwindow* window);
