@@ -8,8 +8,19 @@ Renderer& Renderer::GetInstance()
 
 void Renderer::CheckGlewStatus()
 {
-	if (glewInit != GLEW_OK)
-		std::cout << " GLEW OKn't" << std::endl;
+	 GLenum err = glewInit();
+
+    std::cout << "GLEW result: " << err << std::endl;
+
+    if (err != GLEW_OK)
+    {
+        std::cout << "GLEW Error: "
+                  << reinterpret_cast<const char*>(glewGetErrorString(err))
+                  << std::endl;
+        return;
+    }
+
+    std::cout << "GLEW OK" << std::endl;
 }
 
 void Renderer::SetWindowContext(GLFWwindow* window)
@@ -24,7 +35,7 @@ void Renderer::BindBuffers(float* vertices)
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * 6, &vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6, vertices, GL_STATIC_DRAW);
 }
 
 void Renderer::Draw()

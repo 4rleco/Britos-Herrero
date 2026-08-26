@@ -5,13 +5,9 @@
 
 int BaseGame::RunEngine(int width, int height, const char* title)
 {
-	Renderer renderer = Renderer::GetInstance();
-
 	Window window;
 
 	window.InitWindow(width, height, title);
-
-	renderer.SetWindowContext(window.GetWindow());
 
 	float vertices[6] = {
 		-0.5f, -0.5f,
@@ -19,20 +15,26 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 		0.5f, -0.5f
 	};
 
-	renderer.CheckGlewStatus();
+	Renderer::GetInstance().SetWindowContext(window.GetWindow());
 
-	renderer.BindBuffers(vertices);
+	Renderer::GetInstance().CheckGlewStatus();
+
+	Renderer::GetInstance().BindBuffers(vertices);
 
 	while(!window.ShouldClose())
 	{
+		std::cout << "entra" << std::endl;
+
 		window.Clear();
 
-		renderer.Draw();
+		Renderer::GetInstance().Draw();
 
-		renderer.UpdateBuffers(window.GetWindow());
+		Renderer::GetInstance().UpdateBuffers(window.GetWindow());
 	}
 
-	renderer.CleanData(window.GetWindow());
+	Renderer::GetInstance().CleanData(window.GetWindow());
+
+	std::cout << "sale" << std::endl;
 
 	return 0;
 }
