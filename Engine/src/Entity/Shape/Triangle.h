@@ -1,6 +1,8 @@
 #include "Shape.h"
 
-class Triangle : public Shape
+#include "EngineAPI.h"
+
+class ENGINE_API Triangle : public Shape
 {
 private:
 	float vertices[9];

@@ -33,7 +33,6 @@ void Renderer::BindBuffers()
 	glGenBuffers(1, &VBO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
 }
 
 void Renderer::Draw(float* vertices)
