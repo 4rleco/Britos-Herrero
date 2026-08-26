@@ -155,12 +155,20 @@ xcopy "$(ProjectDir)libs\glew-2.2.0\lib\glew32.dll" "$(OutDir)" /y /i /s</Comman
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Basegame.cpp" />
+    <ClCompile Include="src\Entity\Entity.cpp" />
+    <ClCompile Include="src\Entity\Entity2D.cpp" />
+    <ClCompile Include="src\Entity\Shape\Shape.cpp" />
+    <ClCompile Include="src\Entity\Shape\Triangle.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Basegame.h" />
     <ClInclude Include="src\EngineAPI.h" />
+    <ClInclude Include="src\Entity\Entity.h" />
+    <ClInclude Include="src\Entity\Entity2D.h" />
+    <ClInclude Include="src\Entity\Shape\Shape.h" />
+    <ClInclude Include="src\Entity\Shape\Triangle.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Window\Window .h" />
   </ItemGroup>
