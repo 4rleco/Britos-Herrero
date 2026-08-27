@@ -19,7 +19,7 @@ public:
 	void SetWindowContext(GLFWwindow* window);
 
 	// binds and generete vertex buffers
-	void BindBuffers(float* vertices);
+	void BindBuffers(int vertexesCount, float* vertices);
 
 	void Draw();
 

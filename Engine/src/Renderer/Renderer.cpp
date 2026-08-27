@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Shape.h"
 
 Renderer& Renderer::GetInstance()
 {
@@ -28,14 +29,14 @@ void Renderer::SetWindowContext(GLFWwindow* window)
 	glfwMakeContextCurrent(window);
 }
 
-void Renderer::BindBuffers(float* vertices)
+void Renderer::BindBuffers(int vertexesCount, float* vertexes)
 {
 	unsigned int VBO;
 	glGenBuffers(1, &VBO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6, vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexesCount, vertexes, GL_STATIC_DRAW);
 }
 
 void Renderer::Draw()

@@ -2,6 +2,7 @@
 
 #include "Renderer/Renderer.h"
 #include "Window/Window .h"
+#include "Renderer/Triangle.h"
 
 int BaseGame::RunEngine(int width, int height, const char* title)
 {
@@ -9,17 +10,19 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 
 	window.InitWindow(width, height, title);
 
-	float vertices[6] = {
+	Triangle triangle = Triangle(0, 0, 0);
+
+	/*float vertices[6] = {
 		-0.5f, -0.5f,
 		0.0f, 0.5f,
 		0.5f, -0.5f
-	};
+	};*/
 
 	Renderer::GetInstance().SetWindowContext(window.GetWindow());
 
 	Renderer::GetInstance().CheckGlewStatus();
 
-	Renderer::GetInstance().BindBuffers(vertices);
+	//Renderer::GetInstance().BindBuffers(vertices);
 
 	while(!window.ShouldClose())
 	{
@@ -27,7 +30,9 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 
 		window.Clear();
 
-		Renderer::GetInstance().Draw();
+		triangle.Draw();
+
+		//Renderer::GetInstance().Draw();
 
 		Renderer::GetInstance().UpdateBuffers(window.GetWindow());
 	}
