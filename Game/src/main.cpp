@@ -2,9 +2,7 @@
 
 void main()
 {
-	Triangle triangle = Triangle(0.0f, 0.0f, 0.0f, 0.5f, 0.5f);
-
-	Game game = Game(triangle);
+	Game game = Game();
 
 	int width = 800;
 	int height = 640;

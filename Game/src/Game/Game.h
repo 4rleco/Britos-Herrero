@@ -6,11 +6,13 @@
 class Game : public BaseGame
 {
 private:
-	Triangle triangle = Triangle(0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	Triangle triangle = Triangle();
 
 public:
-	Game(Triangle triangle);
+	Game();
 	~Game();
+
+	void SetTriangle(float x, float y, float z, float width, float height);
 
 	void Update() override;
 };
