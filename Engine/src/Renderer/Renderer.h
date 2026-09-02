@@ -9,6 +9,7 @@ class Renderer
 {
 private:
 	unsigned int VBO;
+	unsigned int VAO;
 	Renderer() = default;
 
 public:

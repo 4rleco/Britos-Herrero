@@ -31,13 +31,20 @@ void Renderer::SetWindowContext(GLFWwindow* window)
 void Renderer::BindBuffers()
 {
 	glGenBuffers(1, &VBO);
+	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
+	glEnableVertexAttribArray(0);
 }
 
 void Renderer::Draw(float* vertices)
 {
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices) * 9, vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9, vertices, GL_STATIC_DRAW);
+
+	glBindVertexArray(VAO);
+
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
