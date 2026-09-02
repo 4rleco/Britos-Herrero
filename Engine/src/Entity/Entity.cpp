@@ -12,7 +12,7 @@ Entity::Entity(float posX, float posY, float posZ, float width, float height)
 
 Entity::~Entity()
 {
-
+	Renderer::GetInstance().DeleteBuffers(VBO, VAO, EBO);
 }
 
 float Entity::GetX()

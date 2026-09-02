@@ -16,6 +16,10 @@ protected:
 	float width;
 	float height;
 
+	unsigned int VBO;
+	unsigned int VAO;
+	unsigned int EBO;
+
 public:
 	Entity(float posX, float posY ,float posZ, float width, float height);
 	virtual ~Entity();
