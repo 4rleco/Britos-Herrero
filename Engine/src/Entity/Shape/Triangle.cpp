@@ -19,6 +19,10 @@ Triangle::Triangle(float posX, float posY, float posZ, float width, float height
 	vertices[6] = posX;
 	vertices[7] = posY + height; // top = x, y + height, z
 	vertices[8] = posZ;
+
+	indices[0] = 0;
+	indices[1] = 1;
+	indices[2] = 2;
 }
 
 Triangle::~Triangle()
@@ -58,5 +62,5 @@ float Triangle::GetHeight()
 
 void Triangle::Draw()
 {
-	Renderer::GetInstance().Draw(vertices);
+	Renderer::GetInstance().Draw(vertices, indices);
 }

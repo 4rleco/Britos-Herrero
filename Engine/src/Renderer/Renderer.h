@@ -10,6 +10,7 @@ class Renderer
 private:
 	unsigned int VBO;
 	unsigned int VAO;
+	unsigned int EBO;
 	Renderer() = default;
 
 public:
@@ -23,7 +24,7 @@ public:
 	// binds and generete vertex buffers
 	void BindBuffers();
 
-	void Draw(float* vertices);
+	void Draw(float* vertices, unsigned int* indices);
 
 	// Switchs the buffers and configurates the next frame (Needed for the correct working of the program)
 	void UpdateBuffers(GLFWwindow* window);
