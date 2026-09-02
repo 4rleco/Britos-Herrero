@@ -1,5 +1,11 @@
 #include "Triangle.h"
 
+Triangle::Triangle() :
+	Shape(posX, posY, posZ, width, height)
+{
+
+}
+
 Triangle::Triangle(float posX, float posY, float posZ, float width, float height) :
 	Shape(posX, posY, posZ, width, height)
 {
