@@ -9,6 +9,7 @@ private:
 	unsigned int indices[3];
 
 public:
+	Triangle();
 	Triangle(float posX, float posY, float posZ, float width, float height);
 	~Triangle();
 
@@ -20,6 +21,10 @@ public:
 
 	float GetWidth() override;
 	float GetHeight() override;
+
+	unsigned int GetIndexAmount();
+
+	void BindBuffers();
 
 	void Draw() override;
 };

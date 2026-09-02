@@ -9,9 +9,14 @@ Triangle::Triangle() :
 Triangle::Triangle(float posX, float posY, float posZ, float width, float height) :
 	Shape(posX, posY, posZ, width, height)
 {
+	material.SetFilepath("Shape.shader");
+	SetMaterial();
+	material.SetShader();
+
 	// middle x, y, z	
 
 	// bottom left
+
 	vertices[0] = posX - width;
 	vertices[1] = posY - height; // bottom left = x - width, y - height, z
 	vertices[2] = posZ;
@@ -66,7 +71,18 @@ float Triangle::GetHeight()
 	return height;
 }
 
+unsigned int Triangle::GetIndexAmount()
+{
+	return 0;
+}
+
+void Triangle::BindBuffers()
+{
+	Renderer::GetInstance().BindBuffers(vertices,  indices, 3, VBO, VAO, EBO);
+}
+
 void Triangle::Draw()
 {
-	Renderer::GetInstance().Draw(vertices, indices);
+	material.UseShader();
+	Renderer::GetInstance().Draw(indices, 3, VAO);
 }
