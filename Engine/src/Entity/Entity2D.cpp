@@ -1,7 +1,7 @@
 #include "Entity2D.h"
 
-Entity2D::Entity2D(float posX, float posY, float posZ, float width, float height) : 
-	Entity (posX, posY, posZ, width, height)
+Entity2D::Entity2D(float posX, float posY, float posZ, float width, float height) :
+	Entity(posX, posY, posZ, width, height)
 {
 
 }
@@ -9,6 +9,11 @@ Entity2D::Entity2D(float posX, float posY, float posZ, float width, float height
 Entity2D::~Entity2D()
 {
 
+}
+
+void Entity2D::SetMaterial()
+{
+	material = material.ParseShader();
 }
 
 float Entity2D::GetX()
@@ -38,5 +43,5 @@ float Entity2D::GetHeight()
 
 void Entity2D::Draw()
 {
-	
+
 }
