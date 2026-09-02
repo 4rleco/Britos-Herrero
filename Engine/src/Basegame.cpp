@@ -13,8 +13,6 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 
 	Renderer::GetInstance().CheckGlewStatus();
 
-	Renderer::GetInstance().BindBuffers();
-
 	while(!window.ShouldClose())
 	{
 		window.Clear();

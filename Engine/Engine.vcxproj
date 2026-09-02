@@ -93,9 +93,9 @@
       <AdditionalDependencies>glfw3dll.lib;Opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)libs\glfw-3.4.bin.WIN32\lib-vc2022\glfw3.dll" "$(OutDir)" /y /i /s
-xcopy "$(ProjectDir)libs\glew-2.2.0\lib\glew32.dll" "$(OutDir)" /y /i /s
-</Command>
+      <Command>xcopy "$(ProjectDir)lib\glfw-3.4.bin.WIN32\lib-vc2022\glfw3.dll" "$(OutDir)" /y /i /s
+xcopy "$(ProjectDir)lib\libs\glew-2.2.0\lib\glew32.dll" "$(OutDir)" /y /i /s
+xcopy "$(ProjectDir)src\Shaders\Shape.shader" "$(OutDir)" /y/i/s</Command>
     </PostBuildEvent>
     <PreLinkEvent>
       <Command>
@@ -121,8 +121,9 @@ xcopy "$(ProjectDir)libs\glew-2.2.0\lib\glew32.dll" "$(OutDir)" /y /i /s
       <AdditionalDependencies>glfw3dll.lib;Opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)libs\glfw-3.4.bin.WIN32\lib-vc2022\glfw3.dll" "$(OutDir)" /y /i /s
-xcopy "$(ProjectDir)libs\glew-2.2.0\lib\glew32.dll" "$(OutDir)" /y /i /s</Command>
+      <Command>xcopy "$(ProjectDir)lib\glfw-3.4.bin.WIN32\lib-vc2022\glfw3.dll" "$(OutDir)" /y /i /s
+xcopy "$(ProjectDir)lib\libs\glew-2.2.0\lib\glew32.dll" "$(OutDir)" /y /i /s
+xcopy "$(ProjectDir)src\Shaders\Shape.shader" "$(OutDir)" /y/i/s</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -159,6 +160,7 @@ xcopy "$(ProjectDir)libs\glew-2.2.0\lib\glew32.dll" "$(OutDir)" /y /i /s</Comman
     <ClCompile Include="src\Entity\Entity2D.cpp" />
     <ClCompile Include="src\Entity\Shape\Shape.cpp" />
     <ClCompile Include="src\Entity\Shape\Triangle.cpp" />
+    <ClCompile Include="src\Material\Material.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />
   </ItemGroup>
@@ -169,8 +171,12 @@ xcopy "$(ProjectDir)libs\glew-2.2.0\lib\glew32.dll" "$(OutDir)" /y /i /s</Comman
     <ClInclude Include="src\Entity\Entity2D.h" />
     <ClInclude Include="src\Entity\Shape\Shape.h" />
     <ClInclude Include="src\Entity\Shape\Triangle.h" />
+    <ClInclude Include="src\Material\Material.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Window\Window .h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Shaders\Shape.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
