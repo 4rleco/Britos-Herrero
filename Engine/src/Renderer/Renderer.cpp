@@ -8,19 +8,19 @@ Renderer& Renderer::GetInstance()
 
 void Renderer::CheckGlewStatus()
 {
-	 GLenum err = glewInit();
+	GLenum err = glewInit();
 
-    std::cout << "GLEW result: " << err << std::endl;
+	std::cout << "GLEW result: " << err << std::endl;
 
-    if (err != GLEW_OK)
-    {
-        std::cout << "GLEW Error: "
-                  << reinterpret_cast<const char*>(glewGetErrorString(err))
-                  << std::endl;
-        return;
-    }
+	if (err != GLEW_OK)
+	{
+		std::cout << "GLEW Error: "
+			<< reinterpret_cast<const char*>(glewGetErrorString(err))
+			<< std::endl;
+		return;
+	}
 
-    std::cout << "GLEW OK" << std::endl;
+	std::cout << "GLEW OK" << std::endl;
 }
 
 void Renderer::SetWindowContext(GLFWwindow* window)
@@ -28,7 +28,7 @@ void Renderer::SetWindowContext(GLFWwindow* window)
 	glfwMakeContextCurrent(window);
 }
 
-void Renderer::BindBuffers(float* vertices, unsigned int* indices, unsigned int indexAmount, 
+void Renderer::BindBuffers(float* vertices, unsigned int* indices, unsigned int indexAmount,
 	unsigned int& VBO, unsigned int& VAO, unsigned int& EBO)
 {
 	glGenBuffers(1, &VBO);
@@ -40,10 +40,13 @@ void Renderer::BindBuffers(float* vertices, unsigned int* indices, unsigned int 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 9, vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(sizeof(float) * 3));
+	glEnableVertexAttribArray(1);
+
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 21, vertices, GL_STATIC_DRAW);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indexAmount, indices, GL_STATIC_DRAW);
 }
 
