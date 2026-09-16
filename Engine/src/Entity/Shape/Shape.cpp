@@ -6,6 +6,12 @@ Shape::Shape(float posX, float posY, float posZ, float width, float height) :
 
 }
 
+Shape::Shape(float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a) :Entity2D(posX, posY, posZ, width, height, r, g, b, a)
+{
+
+}
+
 Shape::~Shape()
 {
 

@@ -12,6 +12,7 @@ protected:
 	float r;
 	float g;
 	float b;
+	float a;
 
 	float width;
 	float height;
@@ -22,6 +23,8 @@ protected:
 
 public:
 	Entity(float posX, float posY ,float posZ, float width, float height);
+	Entity(float posX, float posY ,float posZ, float width, float height,
+		float r, float g, float b, float a);
 	virtual ~Entity();
 
 	virtual float GetX();

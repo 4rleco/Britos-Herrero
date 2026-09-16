@@ -6,6 +6,12 @@ Entity2D::Entity2D(float posX, float posY, float posZ, float width, float height
 
 }
 
+Entity2D::Entity2D(float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a) :Entity(posX, posY, posZ, width, height, r , g, b, a)
+{
+
+}
+
 Entity2D::~Entity2D()
 {
 

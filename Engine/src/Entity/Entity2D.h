@@ -8,6 +8,8 @@ protected:
 
 public:
 	Entity2D(float posX, float posY, float posZ, float width, float height);
+	Entity2D(float posX, float posY, float posZ, float width, float height ,
+		float r, float g, float b, float a);
 	~Entity2D();
 
 	void SetMaterial();

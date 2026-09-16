@@ -6,6 +6,8 @@ private:
 
 public:
 	Shape(float posX, float posY, float posZ, float width, float height);
+	Shape(float posX, float posY, float posZ, float width, float height,
+		float r, float g, float b, float a);
 	~Shape();
 
 	float GetX() override;

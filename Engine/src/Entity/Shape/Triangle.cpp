@@ -36,6 +36,48 @@ Triangle::Triangle(float posX, float posY, float posZ, float width, float height
 	indices[2] = 2;
 }
 
+Triangle::Triangle(float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a) : Shape(posX, posY, posZ, width, height, r, g, b, a)
+{
+	material.SetFilepath("Shape.shader");
+	SetMaterial();
+	material.SetShader();
+
+	// middle x, y, z	
+
+	// bottom left
+
+	vertices[0] = posX - width;
+	vertices[1] = posY - height; // bottom left = x - width, y - height, z
+	vertices[2] = posZ;
+	vertices[3] = r;
+	vertices[4] = g;
+	vertices[5] = b;
+	vertices[6] = a;
+
+	// bottom right
+	vertices[7] = posX + width;
+	vertices[8] = posY - height; // bottom right = x + widht, y -height, z
+	vertices[9] = posZ;
+	vertices[10] = r;
+	vertices[11] = g;
+	vertices[12] = b;
+	vertices[13] = a;
+
+	// top
+	vertices[14] = posX;
+	vertices[15] = posY + height; // top = x, y + height, z
+	vertices[16] = posZ;
+	vertices[17] = r;
+	vertices[18] = g;
+	vertices[19] = b;
+	vertices[20] = a;
+
+	indices[0] = 0;
+	indices[1] = 1;
+	indices[2] = 2;
+}
+
 Triangle::~Triangle()
 {
 
@@ -78,7 +120,7 @@ unsigned int Triangle::GetIndexAmount()
 
 void Triangle::BindBuffers()
 {
-	Renderer::GetInstance().BindBuffers(vertices,  indices, 3, VBO, VAO, EBO);
+	Renderer::GetInstance().BindBuffers(vertices, indices, 3, VBO, VAO, EBO);
 }
 
 void Triangle::Draw()

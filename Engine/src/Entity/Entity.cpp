@@ -10,6 +10,12 @@ Entity::Entity(float posX, float posY, float posZ, float width, float height)
 	this->height = height;
 }
 
+Entity::Entity(float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a)
+{
+
+}
+
 Entity::~Entity()
 {
 	Renderer::GetInstance().DeleteBuffers(VBO, VAO, EBO);
