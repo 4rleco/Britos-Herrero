@@ -5,15 +5,14 @@
 
 class Game : public BaseGame
 {
-private:
-	Triangle triangle = Triangle();
+private :
+	Triangle triangle;
 
 public:
 	Game();
 	~Game();
 
-	void SetTriangle(float x, float y, float z, float width, float height,
-	float r, float g, float b, float a);
-
+	void Init() override;
 	void Update() override;
+	void Draw();
 };
