@@ -3,6 +3,26 @@
 #include "Renderer/Renderer.h"
 #include "Window/Window .h"
 
+BaseGame::BaseGame()
+{
+
+}
+
+BaseGame::~BaseGame()
+{
+
+}
+
+void BaseGame::Init()
+{
+
+}
+
+void BaseGame::Update()
+{
+
+}
+
 int BaseGame::RunEngine(int width, int height, const char* title)
 {
 	Window window;
@@ -12,6 +32,8 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 	Renderer::GetInstance().SetWindowContext(window.GetWindow());
 
 	Renderer::GetInstance().CheckGlewStatus();
+
+	Init();
 
 	while(!window.ShouldClose())
 	{
@@ -25,9 +47,4 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 	Renderer::GetInstance().CleanData(window.GetWindow());
 
 	return 0;
-}
-
-void BaseGame::Update()
-{
-
 }

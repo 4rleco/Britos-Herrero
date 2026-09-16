@@ -5,7 +5,12 @@
 class ENGINE_API BaseGame
 {
 public:
-	int RunEngine(int width, int height, const char* title);
+	BaseGame();
+	~BaseGame();
+
+	virtual void Init();
 
 	virtual void Update();
+
+	int RunEngine(int width, int height, const char* title);
 };
