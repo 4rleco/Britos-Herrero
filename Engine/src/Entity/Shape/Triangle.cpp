@@ -20,16 +20,28 @@ Triangle::Triangle(float posX, float posY, float posZ, float width, float height
 	vertices[0] = posX - width;
 	vertices[1] = posY - height; // bottom left = x - width, y - height, z
 	vertices[2] = posZ;
+	vertices[3] = 1.0f;
+	vertices[4] = 1.0f;
+	vertices[5] = 1.0f;
+	vertices[6] = 1.0f;
 
 	// bottom right
-	vertices[3] = posX + width;
-	vertices[4] = posY - height; // bottom right = x + widht, y -height, z
-	vertices[5] = posZ;
+	vertices[7] = posX + width;
+	vertices[8] = posY - height; // bottom right = x + widht, y -height, z
+	vertices[9] = posZ;
+	vertices[10] = 1.0f;
+	vertices[11] = 1.0f;
+	vertices[12] = 1.0f;
+	vertices[13] = 1.0f;
 
 	// top
-	vertices[6] = posX;
-	vertices[7] = posY + height; // top = x, y + height, z
-	vertices[8] = posZ;
+	vertices[14] = posX;
+	vertices[15] = posY + height; // top = x, y + height, z
+	vertices[16] = posZ;
+	vertices[17] = 1.0f;
+	vertices[18] = 1.0f;
+	vertices[19] = 1.0f;
+	vertices[20] = 1.0f;
 
 	indices[0] = 0;
 	indices[1] = 1;
