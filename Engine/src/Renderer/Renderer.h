@@ -19,10 +19,10 @@ public:
 	void SetWindowContext(GLFWwindow* window);
 
 	// binds and generete vertex buffers
-	void BindBuffers(float* vertices, unsigned int* indices, unsigned int indexAmount,
+	void BindBuffers(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
 		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
 
-	void Draw(unsigned int* indices, unsigned int indexAmount, unsigned int& VAO);
+	void Draw(int indexAmount, unsigned int& VAO);
 
 	// Switchs the buffers and configurates the next frame (Needed for the correct working of the program)
 	void UpdateBuffers(GLFWwindow* window);

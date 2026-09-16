@@ -20,6 +20,9 @@ void Renderer::CheckGlewStatus()
 		return;
 	}
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	std::cout << "GLEW OK" << std::endl;
 }
 
@@ -28,7 +31,7 @@ void Renderer::SetWindowContext(GLFWwindow* window)
 	glfwMakeContextCurrent(window);
 }
 
-void Renderer::BindBuffers(float* vertices, unsigned int* indices, unsigned int indexAmount,
+void Renderer::BindBuffers(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
 	unsigned int& VBO, unsigned int& VAO, unsigned int& EBO)
 {
 	glGenBuffers(1, &VBO);
@@ -38,19 +41,19 @@ void Renderer::BindBuffers(float* vertices, unsigned int* indices, unsigned int 
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * verticiesAmount, vertices, GL_STATIC_DRAW);
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indexAmount, indices, GL_STATIC_DRAW);
 
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)0);
 	glEnableVertexAttribArray(0);
 
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(sizeof(float) * 3));
 	glEnableVertexAttribArray(1);
-
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 21, vertices, GL_STATIC_DRAW);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * indexAmount, indices, GL_STATIC_DRAW);
 }
 
-void Renderer::Draw(unsigned int* indices, unsigned int indexAmount, unsigned int& VAO)
+void Renderer::Draw(int indexAmount, unsigned int& VAO)
 {
 	glBindVertexArray(VAO);
 
