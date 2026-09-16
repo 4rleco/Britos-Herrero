@@ -5,8 +5,11 @@
 class ENGINE_API Triangle : public Shape
 {
 private:
-	float vertices[21];
-	unsigned int indices[3];
+	static const int verticesAmount = 21;
+	float vertices[verticesAmount];
+
+	static const int indicesAmount = 3;
+	unsigned int indices[indicesAmount];
 
 public:
 	Triangle();

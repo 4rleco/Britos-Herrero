@@ -92,7 +92,7 @@ Triangle::Triangle(float posX, float posY, float posZ, float width, float height
 
 Triangle::~Triangle()
 {
-
+	Renderer::GetInstance().DeleteBuffers(VBO, VAO, EBO);
 }
 
 float* Triangle::GetVerticesArray()
@@ -132,11 +132,11 @@ unsigned int Triangle::GetIndexAmount()
 
 void Triangle::BindBuffers()
 {
-	Renderer::GetInstance().BindBuffers(vertices, indices, 3, VBO, VAO, EBO);
+	Renderer::GetInstance().BindBuffers(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO);
 }
 
 void Triangle::Draw()
 {
 	material.UseShader();
-	Renderer::GetInstance().Draw(indices, 3, VAO);
+	Renderer::GetInstance().Draw(indicesAmount, VAO);
 }
