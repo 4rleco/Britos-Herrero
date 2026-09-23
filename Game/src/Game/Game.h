@@ -6,7 +6,8 @@
 class Game : public BaseGame
 {
 private :
-	Triangle triangle;
+	Triangle triangle1;
+	Triangle triangle2;
 
 public:
 	Game();
