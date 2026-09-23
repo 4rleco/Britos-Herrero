@@ -138,5 +138,9 @@ void Triangle::BindBuffers()
 void Triangle::Draw()
 {
 	material.UseShader();
+
+	unsigned int transformLoc = glGetUniformLocation(material.GetShader(), "trs");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trs));
+
 	Renderer::GetInstance().Draw(indicesAmount, VAO);
 }
