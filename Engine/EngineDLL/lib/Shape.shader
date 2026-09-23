@@ -6,9 +6,11 @@ layout (location = 1) in vec4 aColor;
 
 out vec4 ourColor;
 
+uniform mat4 trs;
+
 void main()
 {
-    gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+    gl_Position = trs * vec4(aPos, 1.0);
     ourColor = aColor;
 }
 
@@ -20,5 +22,5 @@ in vec4 ourColor;
 
 void main()
 {
-   FragColor = vec4(1.0, 0.0, 0.0, 0.1);
+    FragColor = ourColor;
 } 
