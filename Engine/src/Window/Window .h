@@ -2,8 +2,6 @@
 
 #include <GLFW/glfw3.h>
 
-#include "EngineAPI.h"
-
 class Window
 {
 private:

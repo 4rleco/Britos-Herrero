@@ -5,23 +5,23 @@
 
 #include "EngineAPI.h"
 
-class ENGINE_API Triangle : public Shape
+class ENGINE_API Square : public Shape
 {
 private:
-	static const int verticesAmount = 21;
+	static const int verticesAmount = 28;
 	float vertices[verticesAmount];
 
-	static const int indicesAmount = 3;
+	static const int indicesAmount = 6;
 	unsigned int indices[indicesAmount];
 
 public:
-	Triangle();
+	Square();
 	//sin color
-	Triangle(float posX, float posY, float posZ, float width, float height);
+	Square(float posX, float posY, float posZ, float width, float height);
 	// todos los vértices usan el mismo color y transparencia
-	Triangle(float posX, float posY, float posZ, float width, float height,
+	Square(float posX, float posY, float posZ, float width, float height,
 		float r, float g, float b, float a);
-	~Triangle();
+	~Square();
 
 	float* GetVerticesArray();
 
