@@ -2,12 +2,18 @@
 
 #include "Basegame.h"
 #include "Entity/Shape/Triangle.h"
+#include "Entity/Shape/Square.h"
 
 class Game : public BaseGame
 {
 private :
 	Triangle triangle1;
 	Triangle triangle2;
+	
+	Square square;
+
+	float rotation;
+	float translation;
 
 public:
 	Game();
