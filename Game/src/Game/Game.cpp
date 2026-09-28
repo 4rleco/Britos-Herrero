@@ -18,7 +18,7 @@ void Game::Init()
 	triangle2 = Triangle(0.0f, 0.0f, 0.0f, 0.5f, 0.5f,
 		0.0f, 1.0f, 0.0f, 1.0f);
 
-	square = Square(0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+	square = Square(400, 320, 0.0f, 100, 100.0f,
 		1.0f, 0.0f, 0.0f, 1.0f);
 
 	rotation = 0.5f;
