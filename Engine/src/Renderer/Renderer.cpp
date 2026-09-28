@@ -53,14 +53,16 @@ void Renderer::BindBuffers(float* vertices, const int verticiesAmount, unsigned 
 	glEnableVertexAttribArray(1);
 }
 
-void Renderer::SetProjectionMatrix(float width, float height)
+void Renderer::SetVPMatrix(float width, float height)
 {
-	proj = glm::ortho(0.0f, width, 0.0f, height, -1.0f, 10.0f);
+	proj = glm::ortho(0.0f, width, 0.0f, height, -100.0f, 100.0f);
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -1.0f));
 }
 
-glm::mat4 Renderer::GetProjectionMatrix()
+glm::mat4 Renderer::GetVPMatrix()
 {
-	return proj;
+	glm::mat4 vp = proj * view;
+	return vp;
 }
 
 void Renderer::Draw(int indexAmount, unsigned int& VAO)

@@ -35,7 +35,7 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 
 	Renderer::GetInstance().CheckGlewStatus();
 
-	Renderer::GetInstance().SetProjectionMatrix(window.GetWidth(), window.GetHeight());
+	Renderer::GetInstance().SetVPMatrix(window.GetWidth(), window.GetHeight());
 
 	Init();
 

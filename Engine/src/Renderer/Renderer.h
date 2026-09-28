@@ -12,7 +12,8 @@ class Renderer
 private:
 	Renderer() = default;
 
-	glm::mat4 proj;
+	glm::mat4 view = glm::mat4(1.0f);
+	glm::mat4 proj = glm::mat4(1.0f);;
 
 public:
 	static Renderer& GetInstance();
@@ -26,9 +27,9 @@ public:
 	void BindBuffers(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
 		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
 
-	void SetProjectionMatrix(float width, float height);
+	void SetVPMatrix(float width, float height);
 
-	glm::mat4 GetProjectionMatrix();
+	glm::mat4 GetVPMatrix();
 
 	void Draw(int indexAmount, unsigned int& VAO);
 
