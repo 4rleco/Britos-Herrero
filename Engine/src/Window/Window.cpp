@@ -6,12 +6,11 @@
 
 using namespace std;
 
-Window::Window()
+Window::Window(int width, int height, const char* title)
 {
 	window = nullptr;
 
-	windowWidth = 0;
-	windowHeight = 0;
+	InitWindow(width, height, title);
 }
 
 Window::~Window()
