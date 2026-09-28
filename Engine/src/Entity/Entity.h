@@ -21,10 +21,11 @@ protected:
 	float width;
 	float height;
 
+	glm::vec3 initialPivot;
 
-	glm::vec3 scale;
-	glm::vec3 rotation;
-	glm::vec3 translation;
+	glm::mat4 scale;
+	glm::mat4 rotation;
+	glm::mat4 translation;
 
 	glm::mat4 trs;
 

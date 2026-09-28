@@ -13,6 +13,7 @@ private :
 	Square square;
 
 	float rotation;
+	float direction;
 	float translation;
 
 public:
