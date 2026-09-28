@@ -53,6 +53,16 @@ void Renderer::BindBuffers(float* vertices, const int verticiesAmount, unsigned 
 	glEnableVertexAttribArray(1);
 }
 
+void Renderer::SetProjectionMatrix(float width, float height)
+{
+	proj = glm::ortho(0.0f, width, 0.0f, height, -1.0f, 10.0f);
+}
+
+glm::mat4 Renderer::GetProjectionMatrix()
+{
+	return proj;
+}
+
 void Renderer::Draw(int indexAmount, unsigned int& VAO)
 {
 	glBindVertexArray(VAO);

@@ -2,6 +2,8 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "glm.hpp"
+#include "gtc/matrix_transform.hpp"
 
 #include <iostream>
 
@@ -9,6 +11,8 @@ class Renderer
 {
 private:
 	Renderer() = default;
+
+	glm::mat4 proj;
 
 public:
 	static Renderer& GetInstance();
@@ -21,6 +25,10 @@ public:
 	// binds and generete vertex buffers
 	void BindBuffers(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
 		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
+
+	void SetProjectionMatrix(float width, float height);
+
+	glm::mat4 GetProjectionMatrix();
 
 	void Draw(int indexAmount, unsigned int& VAO);
 

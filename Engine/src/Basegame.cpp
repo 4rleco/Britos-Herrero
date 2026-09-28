@@ -13,9 +13,11 @@ BaseGame::~BaseGame()
 
 }
 
-void BaseGame::Init()
 {
 
+void BaseGame::Init()
+{
+	
 }
 
 void BaseGame::Update()
@@ -32,6 +34,8 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 	Renderer::GetInstance().SetWindowContext(window.GetWindow());
 
 	Renderer::GetInstance().CheckGlewStatus();
+
+	Renderer::GetInstance().SetProjectionMatrix(window.GetWidth(), window.GetHeight());
 
 	Init();
 
