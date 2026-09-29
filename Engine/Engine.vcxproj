@@ -159,18 +159,19 @@ xcopy "$(ProjectDir)src\Shaders\Shape.shader" "$(OutDir)" /y/i/s</Command>
     <ClCompile Include="src\Entity\Entity.cpp" />
     <ClCompile Include="src\Entity\Entity2D.cpp" />
     <ClCompile Include="src\Entity\Shape\Shape.cpp" />
+    <ClCompile Include="src\Entity\Shape\Square.cpp" />
     <ClCompile Include="src\Entity\Shape\Triangle.cpp" />
     <ClCompile Include="src\Material\Material.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Square.h" />
     <ClInclude Include="src\Basegame.h" />
     <ClInclude Include="src\EngineAPI.h" />
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\Entity\Entity2D.h" />
     <ClInclude Include="src\Entity\Shape\Shape.h" />
+    <ClInclude Include="src\Entity\Shape\Square.h" />
     <ClInclude Include="src\Entity\Shape\Triangle.h" />
     <ClInclude Include="src\Material\Material.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
