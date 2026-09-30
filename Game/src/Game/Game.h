@@ -8,11 +8,7 @@ class Game : public BaseGame
 {
 private :
 	Triangle triangle1;
-	Triangle triangle2;
-	
-	Square square;
 
-	float rotation;
 	float direction;
 	float translation;
 

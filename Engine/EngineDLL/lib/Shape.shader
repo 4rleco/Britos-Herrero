@@ -7,10 +7,11 @@ layout (location = 1) in vec4 aColor;
 out vec4 ourColor;
 
 uniform mat4 trs;
+uniform mat4 vp;
 
 void main()
 {
-    gl_Position = trs * vec4(aPos, 1.0);
+    gl_Position = vp * trs * vec4(aPos, 1.0);
     ourColor = aColor;
 }
 
