@@ -1,15 +1,15 @@
-#include "Square.h"
+#include "SpriteSquare.h"
 
-Square::Square() :
-	Shape(posX, posY, posZ, width, height)
+SpriteSquare::SpriteSquare() :
+	Sprite(posX, posY, posZ, width, height)
 {
 
 }
 
-Square::Square(float posX, float posY, float posZ, float width, float height) :
-	Shape(posX, posY, posZ, width, height)
+SpriteSquare::SpriteSquare(float posX, float posY, float posZ, float width, float height) :
+	Sprite(posX, posY, posZ, width, height)
 {
-	material.SetFilepath("Shape.shader");
+	material.SetFilepath("Sprtie.shader");
 	SetMaterial();
 	material.SetShader();
 
@@ -63,10 +63,10 @@ Square::Square(float posX, float posY, float posZ, float width, float height) :
 	indices[5] = 3;
 }
 
-Square::Square(float posX, float posY, float posZ, float width, float height,
-	float r, float g, float b, float a) : Shape(posX, posY, posZ, width, height, r, g, b, a)
+SpriteSquare::SpriteSquare(float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a) : Sprite(posX, posY, posZ, width, height, r, g, b, a)
 {
-	material.SetFilepath("Shape.shader");
+	material.SetFilepath("Sprtie.shader");
 	SetMaterial();
 	material.SetShader();
 
@@ -120,52 +120,52 @@ Square::Square(float posX, float posY, float posZ, float width, float height,
 	indices[5] = 3;
 }
 
-Square::~Square()
+SpriteSquare::~SpriteSquare()
 {
 	Renderer::GetInstance().DeleteBuffers(VBO, VAO, EBO);
 }
 
-float* Square::GetVerticesArray()
+float* SpriteSquare::GetVerticesArray()
 {
 	return vertices;
 }
 
-float Square::GetX()
+float SpriteSquare::GetX()
 {
 	return posX;
 }
 
-float Square::GetY()
+float SpriteSquare::GetY()
 {
 	return posY;
 }
 
-float Square::GetZ()
+float SpriteSquare::GetZ()
 {
 	return posZ;
 }
 
-float Square::GetWidth()
+float SpriteSquare::GetWidth()
 {
 	return width;
 }
 
-float Square::GetHeight()
+float SpriteSquare::GetHeight()
 {
 	return height;
 }
 
-unsigned int Square::GetIndexAmount()
+unsigned int SpriteSquare::GetIndexAmount()
 {
 	return indicesAmount;
 }
 
-void Square::BindBuffers()
+void SpriteSquare::BindBuffers()
 {
 	Renderer::GetInstance().BindBuffers(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO);
 }
 
-void Square::Draw()
+void SpriteSquare::Draw()
 {
 	material.UseShader();
 

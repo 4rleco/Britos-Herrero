@@ -1,15 +1,15 @@
-#include "Square.h"
+#include "SpriteTriangle.h"
 
-Square::Square() :
-	Shape(posX, posY, posZ, width, height)
+SpriteTriangle::SpriteTriangle() :
+	Sprite(posX, posY, posZ, width, height)
 {
 
 }
 
-Square::Square(float posX, float posY, float posZ, float width, float height) :
-	Shape(posX, posY, posZ, width, height)
+SpriteTriangle::SpriteTriangle(float posX, float posY, float posZ, float width, float height) :
+	Sprite(posX, posY, posZ, width, height)
 {
-	material.SetFilepath("Shape.shader");
+	material.SetFilepath("Sprite.shader");
 	SetMaterial();
 	material.SetShader();
 
@@ -34,39 +34,24 @@ Square::Square(float posX, float posY, float posZ, float width, float height) :
 	vertices[12] = 1.0f;
 	vertices[13] = 1.0f;
 
-	// top left
-	vertices[14] = posX - width;
-	vertices[15] = posY + height; // top right = x - width, y + height, z
+	// top
+	vertices[14] = posX;
+	vertices[15] = posY + height; // top = x, y + height, z
 	vertices[16] = posZ;
 	vertices[17] = 1.0f;
 	vertices[18] = 1.0f;
 	vertices[19] = 1.0f;
 	vertices[20] = 1.0f;
 
-	// top right
-	vertices[21] = posX + width;
-	vertices[22] = posY + height; // top = x + width, y + height, z
-	vertices[23] = posZ;
-	vertices[24] = 1.0f;
-	vertices[25] = 1.0f;
-	vertices[26] = 1.0f;
-	vertices[27] = 1.0f;
-	
-	// first triangle
 	indices[0] = 0;
 	indices[1] = 1;
-	indices[2] = 3;
-	
-	// Second triangle
-	indices[3] = 1;
-	indices[4] = 2;
-	indices[5] = 3;
+	indices[2] = 2;
 }
 
-Square::Square(float posX, float posY, float posZ, float width, float height,
-	float r, float g, float b, float a) : Shape(posX, posY, posZ, width, height, r, g, b, a)
+SpriteTriangle::SpriteTriangle(float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a) : Sprite(posX, posY, posZ, width, height, r, g, b, a)
 {
-	material.SetFilepath("Shape.shader");
+	material.SetFilepath("Sprite.shader");
 	SetMaterial();
 	material.SetShader();
 
@@ -91,81 +76,66 @@ Square::Square(float posX, float posY, float posZ, float width, float height,
 	vertices[12] = b;
 	vertices[13] = a;
 
-	// top left
-	vertices[14] = posX - width;
-	vertices[15] = posY + height; // top right = x - width, y + height, z
+	// top
+	vertices[14] = posX;
+	vertices[15] = posY + height; // top = x, y + height, z
 	vertices[16] = posZ;
 	vertices[17] = r;
 	vertices[18] = g;
 	vertices[19] = b;
 	vertices[20] = a;
 
-	// top right
-	vertices[21] = posX + width;
-	vertices[22] = posY + height; // top = x + width, y + height, z
-	vertices[23] = posZ;
-	vertices[24] = r;
-	vertices[25] = g;
-	vertices[26] = b;
-	vertices[27] = a;
-
-	// first triangle
 	indices[0] = 0;
 	indices[1] = 1;
 	indices[2] = 2;
-
-	// Second triangle
-	indices[3] = 1;
-	indices[4] = 2;
-	indices[5] = 3;
 }
 
-Square::~Square()
+SpriteTriangle::~SpriteTriangle()
 {
 	Renderer::GetInstance().DeleteBuffers(VBO, VAO, EBO);
 }
 
-float* Square::GetVerticesArray()
+float* SpriteTriangle::GetVerticesArray()
 {
 	return vertices;
 }
 
-float Square::GetX()
+float SpriteTriangle::GetX()
 {
 	return posX;
 }
 
-float Square::GetY()
+float SpriteTriangle::GetY()
 {
 	return posY;
 }
 
-float Square::GetZ()
+float SpriteTriangle::GetZ()
 {
 	return posZ;
 }
 
-float Square::GetWidth()
+float SpriteTriangle::GetWidth()
 {
 	return width;
 }
 
-float Square::GetHeight()
+float SpriteTriangle::GetHeight()
 {
 	return height;
 }
 
-unsigned int Square::GetIndexAmount()
+unsigned int SpriteTriangle::GetIndexAmount()
 {
-	return indicesAmount;
+	return 0;
 }
 
-void Square::BindBuffers()
+void SpriteTriangle::BindBuffers()
 {
 	Renderer::GetInstance().BindBuffers(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO);
 }
 
-void Square::Draw()
+void SpriteTriangle::Draw()
 {
 	material.UseShader();
 
