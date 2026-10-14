@@ -20,28 +20,40 @@ SpriteTriangle::SpriteTriangle(float posX, float posY, float posZ, float width, 
 	vertices[0] = posX - width;
 	vertices[1] = posY - height; // bottom left = x - width, y - height, z
 	vertices[2] = posZ;
+	// r g b a
 	vertices[3] = 1.0f;
 	vertices[4] = 1.0f;
 	vertices[5] = 1.0f;
 	vertices[6] = 1.0f;
+	// u v
+	vertices[7] = 0.0f;
+	vertices[8] = 0.0f;
 
 	// bottom right
-	vertices[7] = posX + width;
-	vertices[8] = posY - height; // bottom right = x + widht, y -height, z
-	vertices[9] = posZ;
-	vertices[10] = 1.0f;
-	vertices[11] = 1.0f;
+	vertices[9] = posX + width;
+	vertices[10] = posY - height; // bottom right = x + widht, y -height, z
+	vertices[11] = posZ;
+	// r g b a
 	vertices[12] = 1.0f;
 	vertices[13] = 1.0f;
+	vertices[14] = 1.0f;
+	vertices[15] = 1.0f;
+	// u v
+	vertices[16] = 1.0f;
+	vertices[17] = 0.0f;
 
 	// top
-	vertices[14] = posX;
-	vertices[15] = posY + height; // top = x, y + height, z
-	vertices[16] = posZ;
-	vertices[17] = 1.0f;
-	vertices[18] = 1.0f;
-	vertices[19] = 1.0f;
-	vertices[20] = 1.0f;
+	vertices[18] = posX;
+	vertices[19] = posY + height; // top = x, y + height, z
+	vertices[20] = posZ;
+	// r g b a
+	vertices[21] = 1.0f;
+	vertices[22] = 1.0f;
+	vertices[23] = 1.0f;
+	vertices[24] = 1.0f;
+	// u v
+	vertices[25] = 0.5f;
+	vertices[26] = 1.0f;
 
 	indices[0] = 0;
 	indices[1] = 1;
@@ -62,28 +74,40 @@ SpriteTriangle::SpriteTriangle(float posX, float posY, float posZ, float width, 
 	vertices[0] = posX - width;
 	vertices[1] = posY - height; // bottom left = x - width, y - height, z
 	vertices[2] = posZ;
+	// r g b a 
 	vertices[3] = r;
 	vertices[4] = g;
 	vertices[5] = b;
 	vertices[6] = a;
+	// u v
+	vertices[7] = 0.0f;
+	vertices[8] = 0.0f;
 
 	// bottom right
-	vertices[7] = posX + width;
-	vertices[8] = posY - height; // bottom right = x + widht, y -height, z
-	vertices[9] = posZ;
-	vertices[10] = r;
-	vertices[11] = g;
-	vertices[12] = b;
-	vertices[13] = a;
+	vertices[9] = posX + width;
+	vertices[10] = posY - height; // bottom right = x + widht, y -height, z
+	vertices[11] = posZ;
+	// r g b a 
+	vertices[12] = r;
+	vertices[13] = g;
+	vertices[14] = b;
+	vertices[15] = a;
+	// u v
+	vertices[16] = 1.0f;
+	vertices[17] = 0.0f;
 
 	// top
-	vertices[14] = posX;
-	vertices[15] = posY + height; // top = x, y + height, z
-	vertices[16] = posZ;
-	vertices[17] = r;
-	vertices[18] = g;
-	vertices[19] = b;
-	vertices[20] = a;
+	vertices[18] = posX;
+	vertices[19] = posY + height; // top = x, y + height, z
+	vertices[20] = posZ;
+	// r g b a 
+	vertices[21] = r;
+	vertices[22] = g;
+	vertices[23] = b;
+	vertices[24] = a;
+	// u v
+	vertices[25] = 0.5f;
+	vertices[26] = 1.0f;
 
 	indices[0] = 0;
 	indices[1] = 1;

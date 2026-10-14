@@ -8,7 +8,7 @@
 class ENGINE_API SpriteTriangle : public Sprite
 {
 private:
-	static const int verticesAmount = 21;
+	static const int verticesAmount = 27;
 	float vertices[verticesAmount];
 
 	static const int indicesAmount = 3;

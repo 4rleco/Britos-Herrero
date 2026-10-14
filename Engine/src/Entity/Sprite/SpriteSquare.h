@@ -8,7 +8,7 @@
 class ENGINE_API SpriteSquare : public Sprite
 {
 private:
-	static const int verticesAmount = 28;
+	static const int verticesAmount = 36;
 	float vertices[verticesAmount];
 
 	static const int indicesAmount = 6;
