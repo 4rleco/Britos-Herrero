@@ -1,12 +1,14 @@
 #include "Sprite.h"
 
-Sprite::Sprite(float posX, float posY, float posZ, float width, float height) :
+Sprite::Sprite(std::string filepath, float posX, float posY, float posZ,
+	float width, float height) :
 	Entity2D(posX, posY, posZ, width, height)
 {
-
+	
 }
 
-Sprite::Sprite(float posX, float posY, float posZ, float width, float height,
+Sprite::Sprite(std::string filepath, float posX, float posY, float posZ, 
+	float width, float height,
 	float r, float g, float b, float a) :Entity2D(posX, posY, posZ, width, height, r, g, b, a)
 {
 
@@ -40,4 +42,14 @@ float Sprite::GetWidth()
 float Sprite::GetHeight()
 {
 	return 0.0f;
+}
+
+std::string Sprite::GetFilepath()
+{
+	return filepath;
+}
+
+unsigned int Sprite::GetTexture()
+{
+	return texture;
 }

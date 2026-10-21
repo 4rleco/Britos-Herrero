@@ -1,17 +1,19 @@
 #include "SpriteSquare.h"
 
 SpriteSquare::SpriteSquare() :
-	Sprite(posX, posY, posZ, width, height)
+	Sprite(filepath, posX, posY, posZ, width, height)
 {
 
 }
 
-SpriteSquare::SpriteSquare(float posX, float posY, float posZ, float width, float height) :
-	Sprite(posX, posY, posZ, width, height)
+SpriteSquare::SpriteSquare(std::string filepath, float posX, float posY, float posZ, float width, float height) :
+	Sprite(filepath, posX, posY, posZ, width, height)
 {
 	material.SetFilepath("Sprtie.shader");
 	SetMaterial();
 	material.SetShader();
+
+	textureImporter = TextureImporter(filepath);
 
 	// middle x, y, z	
 
@@ -79,10 +81,10 @@ SpriteSquare::SpriteSquare(float posX, float posY, float posZ, float width, floa
 	indices[5] = 3;
 }
 
-SpriteSquare::SpriteSquare(float posX, float posY, float posZ, float width, float height,
-	float r, float g, float b, float a) : Sprite(posX, posY, posZ, width, height, r, g, b, a)
+SpriteSquare::SpriteSquare(std::string filepath, float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a) : Sprite(filepath, posX, posY, posZ, width, height, r, g, b, a)
 {
-	material.SetFilepath("Sprtie.shader");
+	material.SetFilepath("Sprite.shader");
 	SetMaterial();
 	material.SetShader();
 
@@ -191,9 +193,10 @@ unsigned int SpriteSquare::GetIndexAmount()
 	return indicesAmount;
 }
 
-void SpriteSquare::BindBuffers()
+void SpriteSquare::BindTexture()
 {
-	Renderer::GetInstance().BindBuffers(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO);
+	Renderer::GetInstance().BindTexure(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO,
+		filepath, texture,	textureImporter.GetWidth(), textureImporter.GetHeight(), textureImporter.GetNrChannels());
 }
 
 void SpriteSquare::Draw()
@@ -206,5 +209,5 @@ void SpriteSquare::Draw()
 	unsigned int projViewLoc = glGetUniformLocation(material.GetShader(), "vp");
 	glUniformMatrix4fv(projViewLoc, 1, GL_FALSE, glm::value_ptr(Renderer::GetInstance().GetVPMatrix()));
 
-	Renderer::GetInstance().Draw(indicesAmount, VAO);
+	Renderer::GetInstance().DrawSprite(indicesAmount, VAO, texture);
 }

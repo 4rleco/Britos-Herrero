@@ -16,10 +16,12 @@ private:
 
 public:
 	SpriteSquare();
+	
 	//sin color
-	SpriteSquare(float posX, float posY, float posZ, float width, float height);
+	SpriteSquare(std::string filepath, float posX, float posY, float posZ, float width, float height);
+	
 	// todos los vértices usan el mismo color y transparencia
-	SpriteSquare(float posX, float posY, float posZ, float width, float height,
+	SpriteSquare(std::string filepath, float posX, float posY, float posZ, float width, float height,
 		float r, float g, float b, float a);
 	~SpriteSquare();
 
@@ -34,7 +36,7 @@ public:
 
 	unsigned int GetIndexAmount();
 
-	void BindBuffers();
+	void BindTexture();
 
 	void Draw() override;
 };

@@ -17,9 +17,9 @@ private:
 public:
 	SpriteTriangle();
 	//sin color
-	SpriteTriangle(float posX, float posY, float posZ, float width, float height);
+	SpriteTriangle(std::string filepath, float posX, float posY, float posZ, float width, float height);
 	// todos los vértices usan el mismo color y transparencia
-	SpriteTriangle(float posX, float posY, float posZ, float width, float height,
+	SpriteTriangle(std::string filepath, float posX, float posY, float posZ, float width, float height,
 		float r, float g, float b, float a);
 	~SpriteTriangle();
 
@@ -34,7 +34,7 @@ public:
 
 	unsigned int GetIndexAmount();
 
-	void BindBuffers();
+	void BindTexture();
 
 	void Draw() override;
 };

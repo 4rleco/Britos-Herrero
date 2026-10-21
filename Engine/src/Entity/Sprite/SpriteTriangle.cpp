@@ -1,13 +1,13 @@
 #include "SpriteTriangle.h"
 
 SpriteTriangle::SpriteTriangle() :
-	Sprite(posX, posY, posZ, width, height)
+	Sprite(filepath, posX, posY, posZ, width, height)
 {
-
+	
 }
 
-SpriteTriangle::SpriteTriangle(float posX, float posY, float posZ, float width, float height) :
-	Sprite(posX, posY, posZ, width, height)
+SpriteTriangle::SpriteTriangle(std::string filepath, float posX, float posY, float posZ, float width, float height) :
+	Sprite(filepath, posX, posY, posZ, width, height)
 {
 	material.SetFilepath("Sprite.shader");
 	SetMaterial();
@@ -60,8 +60,8 @@ SpriteTriangle::SpriteTriangle(float posX, float posY, float posZ, float width, 
 	indices[2] = 2;
 }
 
-SpriteTriangle::SpriteTriangle(float posX, float posY, float posZ, float width, float height,
-	float r, float g, float b, float a) : Sprite(posX, posY, posZ, width, height, r, g, b, a)
+SpriteTriangle::SpriteTriangle(std::string filepath, float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a) : Sprite(filepath, posX, posY, posZ, width, height, r, g, b, a)
 {
 	material.SetFilepath("Sprite.shader");
 	SetMaterial();
@@ -154,9 +154,10 @@ unsigned int SpriteTriangle::GetIndexAmount()
 	return 0;
 }
 
-void SpriteTriangle::BindBuffers()
+void SpriteTriangle::BindTexture()
 {
-	Renderer::GetInstance().BindBuffers(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO);
+	Renderer::GetInstance().BindTexure(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO,
+		filepath, texture, textureImporter.GetWidth(), textureImporter.GetHeight(), textureImporter.GetNrChannels());
 }
 
 void SpriteTriangle::Draw()
@@ -169,5 +170,5 @@ void SpriteTriangle::Draw()
 	unsigned int projViewLoc = glGetUniformLocation(material.GetShader(), "vp");
 	glUniformMatrix4fv(projViewLoc, 1, GL_FALSE, glm::value_ptr(Renderer::GetInstance().GetVPMatrix()));
 
-	Renderer::GetInstance().Draw(indicesAmount, VAO);
+	Renderer::GetInstance().DrawSprite(indicesAmount, VAO, texture);
 }
