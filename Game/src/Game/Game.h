@@ -4,6 +4,9 @@
 #include "Entity/Shape/Triangle.h"
 #include "Entity/Shape/Square.h"
 
+#include "Entity/Sprite/SpriteSquare.h"
+#include "Entity/Sprite/SpriteTriangle.h"
+
 class Game : public BaseGame
 {
 private :
@@ -11,6 +14,7 @@ private :
 	Triangle triangle2;
 	
 	Square square;
+	SpriteSquare sSquare;
 
 	float rotation;
 	float direction;

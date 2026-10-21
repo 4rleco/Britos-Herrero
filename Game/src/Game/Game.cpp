@@ -21,6 +21,9 @@ void Game::Init()
 	square = Square(400, 320, 0.0f, 100.0f, 100.0f,
 		1.0f, 0.0f, 0.0f, 1.0f);
 
+	sSquare = SpriteSquare("LilDallas.jpg" ,400, 320, 0.0f, 100.0f, 100.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+		
+
 	rotation = 1.0f;
 	translation = 0.1f;
 	direction = 2;
@@ -38,6 +41,8 @@ void Game::Draw()
 
 	triangle1.BindBuffers();
 	triangle1.Draw();
+	sSquare.BindTexture();
+	sSquare.Draw();
 }
 
 
