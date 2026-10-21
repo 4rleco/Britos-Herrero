@@ -5,6 +5,8 @@
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
 
+#include "stb_image/stb_image.h"
+
 #include <iostream>
 
 class Renderer
@@ -27,11 +29,16 @@ public:
 	void BindBuffers(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
 		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
 
+	void BindTexure(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
+		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO, std::string filepath,
+		unsigned int texture, int width, int height, int nrChannels);
+
 	void SetVPMatrix(float width, float height);
 
 	glm::mat4 GetVPMatrix();
 
 	void Draw(int indexAmount, unsigned int& VAO);
+	void DrawSprite(int indexAmount, unsigned int& VAO, unsigned int texture);
 
 	// Switchs the buffers and configurates the next frame (Needed for the correct working of the program)
 	void UpdateBuffers(GLFWwindow* window);
