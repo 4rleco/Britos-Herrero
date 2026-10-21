@@ -92,6 +92,9 @@
     <ClInclude Include="src\Entity\Sprite\SpriteTriangle.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\stb_image.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Shaders\Shape.shader" />
