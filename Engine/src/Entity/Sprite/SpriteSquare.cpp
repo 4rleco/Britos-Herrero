@@ -18,7 +18,6 @@ SpriteSquare::SpriteSquare(std::string filepath, float posX, float posY, float p
 	// middle x, y, z	
 
 	// bottom left
-
 	vertices[0] = posX - width;
 	vertices[1] = posY - height; // bottom left = x - width, y - height, z
 	vertices[2] = posZ;
@@ -73,7 +72,7 @@ SpriteSquare::SpriteSquare(std::string filepath, float posX, float posY, float p
 	// first triangle
 	indices[0] = 0;
 	indices[1] = 1;
-	indices[2] = 3;
+	indices[2] = 2;
 
 	// Second triangle
 	indices[3] = 1;
