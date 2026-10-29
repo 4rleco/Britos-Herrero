@@ -127,8 +127,17 @@ void Renderer::Draw(int indexAmount, unsigned int& VAO)
 	glDrawElements(GL_TRIANGLES, indexAmount, GL_UNSIGNED_INT, 0);
 }
 
-void Renderer::DrawSprite(int indexAmount, unsigned int& VAO, unsigned int texture)
+void Renderer::DrawSprite(unsigned int shader, glm::mat4 trs, const char* filepath,
+	int indexAmount, unsigned int& VAO, unsigned int& texture, int texNum)
 {
+	unsigned int transformLoc = glGetUniformLocation(shader, "trs");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trs));
+
+	unsigned int projViewLoc = glGetUniformLocation(shader, "vp");
+	glUniformMatrix4fv(projViewLoc, 1, GL_FALSE, glm::value_ptr(Renderer::GetInstance().GetVPMatrix()));
+
+	glUniform1i(glGetUniformLocation(shader, filepath), 0);
+
 	glActiveTexture(GL_TEXTURE0 + texNum);
 	glBindTexture(GL_TEXTURE_2D, texture);
 

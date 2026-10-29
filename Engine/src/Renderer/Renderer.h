@@ -38,7 +38,8 @@ public:
 	glm::mat4 GetVPMatrix();
 
 	void Draw(int indexAmount, unsigned int& VAO);
-	void DrawSprite(int indexAmount, unsigned int& VAO, unsigned int texture);
+	void DrawSprite(unsigned int shader, glm::mat4 trs, const char* filepath,
+		int indexAmount, unsigned int& VAO, unsigned int& texture, int texNum);
 
 	// Switchs the buffers and configurates the next frame (Needed for the correct working of the program)
 	void UpdateBuffers(GLFWwindow* window);
