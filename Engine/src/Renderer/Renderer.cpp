@@ -150,6 +150,11 @@ void Renderer::DeleteBuffers(unsigned int& VBO, unsigned int& VAO, unsigned int&
 	glDeleteBuffers(1, &EBO);
 }
 
+void Renderer::DeleteTexBuffer(unsigned int& texture)
+{
+	glDeleteTextures(1, &texture);
+}
+
 /* Cleans all the leftover resources left by the window and the window itself */
 void Renderer::CleanData(GLFWwindow* window)
 {
