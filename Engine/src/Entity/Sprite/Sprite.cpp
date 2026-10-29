@@ -16,7 +16,7 @@ Sprite::Sprite(const char* filepath, float posX, float posY, float posZ,
 
 Sprite::~Sprite()
 {
-
+	delete textureImporter;
 }
 
 float Sprite::GetX()
@@ -42,11 +42,6 @@ float Sprite::GetWidth()
 float Sprite::GetHeight()
 {
 	return 0.0f;
-}
-
-std::string Sprite::GetFilepath()
-{
-	return filepath;
 }
 
 unsigned int Sprite::GetTexture()

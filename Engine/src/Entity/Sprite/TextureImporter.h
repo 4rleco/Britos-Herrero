@@ -1,22 +1,28 @@
 #pragma once
-#include <iostream>
-
 
 class TextureImporter
 {
 private:
-	int width;
-	int height;
+	const char* filepath;
+
+	unsigned char* data;
+
+	int texWidth;
+	int texHeight;
 	int nrChannels;
 
 public:
 	TextureImporter();
 
-	TextureImporter(std::string filepath);
+	TextureImporter(const char* filepath);
 
 	~TextureImporter();
 
-	int GetWidth();
-	int GetHeight();
-	int GetNrChannels();
+	int& GetWidth();
+	int& GetHeight();
+	int& GetNrChannels();
+
+	unsigned char* GetTexData();
+
+	const char* GetFilePath();
 };

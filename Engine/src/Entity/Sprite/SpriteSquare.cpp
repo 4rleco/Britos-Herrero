@@ -9,7 +9,8 @@ SpriteSquare::SpriteSquare() :
 SpriteSquare::SpriteSquare(const char* filepath, int num, float posX, float posY, float posZ, float width, float height) :
 	Sprite(filepath, posX, posY, posZ, width, height)
 {
-	this->filepath = filepath;
+	textureImporter = new TextureImporter(filepath);
+
 	this->num = num;
 
 	// middle x, y, z	
@@ -86,7 +87,8 @@ SpriteSquare::SpriteSquare(const char* filepath, int num, float posX, float posY
 SpriteSquare::SpriteSquare(const char* filepath, int num, float posX, float posY, float posZ, float width, float height,
 	float r, float g, float b, float a) : Sprite(filepath, posX, posY, posZ, width, height, r, g, b, a)
 {
-	this->filepath = filepath;
+	textureImporter = new TextureImporter(filepath);
+
 	this->num = num;
 
 	// middle x, y, z	
@@ -203,12 +205,13 @@ unsigned int SpriteSquare::GetIndexAmount()
 void SpriteSquare::BindTexture()
 {
 	Renderer::GetInstance().BindTexure(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO, 
-		texture, data, filepath, texWidth, texHeight, nrChannels);
+		texture, textureImporter->GetTexData(), textureImporter->GetFilePath(), 
+		textureImporter->GetWidth(), textureImporter->GetHeight(), textureImporter->GetNrChannels());
 }
 
 void SpriteSquare::Draw()
 {
 	material.UseShader();
 
-	Renderer::GetInstance().DrawSprite(material.GetShader(), trs, filepath, indicesAmount, VAO, texture, num);
+	Renderer::GetInstance().DrawSprite(material.GetShader(), trs, textureImporter->GetFilePath(), indicesAmount, VAO, texture, num);
 }

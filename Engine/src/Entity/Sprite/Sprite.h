@@ -1,13 +1,12 @@
 #pragma once
 
 #include "../Entity2D.h"
-//#include "TextureImporter.h"
+#include "TextureImporter.h"
 
 class Sprite : public Entity2D
 {
 protected:
-	//TextureImporter textureImporter;
-	const char* filepath;
+	TextureImporter* textureImporter;
 
 	unsigned int texture;
 
@@ -27,6 +26,5 @@ public:
 	float GetWidth() override;
 	float GetHeight() override;
 
-	std::string GetFilepath();
 	unsigned int GetTexture();
 };

@@ -1,7 +1,7 @@
 #include "SpriteTriangle.h"
 
 SpriteTriangle::SpriteTriangle() :
-	Sprite(filepath, posX, posY, posZ, width, height)
+	Sprite(" ", posX, posY, posZ, width, height)
 {
 	
 }
@@ -9,9 +9,7 @@ SpriteTriangle::SpriteTriangle() :
 SpriteTriangle::SpriteTriangle(const char* filepath,  float posX, float posY, float posZ, float width, float height) :
 	Sprite(filepath, posX, posY, posZ, width, height)
 {
-	material.SetFilepath("Sprite.shader");
-	SetMaterial();
-	material.SetShader();
+	textureImporter = new TextureImporter(filepath);
 
 	// middle x, y, z	
 
@@ -58,14 +56,19 @@ SpriteTriangle::SpriteTriangle(const char* filepath,  float posX, float posY, fl
 	indices[0] = 0;
 	indices[1] = 1;
 	indices[2] = 2;
+
+
+	material.SetFilepath("Sprite.shader");
+	SetMaterial();
+	material.SetShader();
+
+	BindTexture();
 }
 
 SpriteTriangle::SpriteTriangle(const char* filepath, float posX, float posY, float posZ, float width, float height,
 	float r, float g, float b, float a) : Sprite(filepath, posX, posY, posZ, width, height, r, g, b, a)
 {
-	material.SetFilepath("Sprite.shader");
-	SetMaterial();
-	material.SetShader();
+	textureImporter = new TextureImporter(filepath);
 
 	// middle x, y, z	
 
@@ -112,6 +115,13 @@ SpriteTriangle::SpriteTriangle(const char* filepath, float posX, float posY, flo
 	indices[0] = 0;
 	indices[1] = 1;
 	indices[2] = 2;
+
+
+	material.SetFilepath("Sprite.shader");
+	SetMaterial();
+	material.SetShader();
+
+	BindTexture();
 }
 
 SpriteTriangle::~SpriteTriangle()
@@ -158,12 +168,13 @@ unsigned int SpriteTriangle::GetIndexAmount()
 void SpriteTriangle::BindTexture()
 {
 	Renderer::GetInstance().BindTexure(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO,
-		texture, data, filepath, texWidth, texHeight, nrChannels);
+		texture, textureImporter->GetTexData(), textureImporter->GetFilePath(),
+		textureImporter->GetWidth(), textureImporter->GetHeight(), textureImporter->GetNrChannels());
 }
 
 void SpriteTriangle::Draw()
 {
 	material.UseShader();
 
-	Renderer::GetInstance().DrawSprite(material.GetShader(), trs, filepath, indicesAmount, VAO, texture, num);
+	Renderer::GetInstance().DrawSprite(material.GetShader(), trs, textureImporter->GetFilePath(), indicesAmount, VAO, texture, num);
 }

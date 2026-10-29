@@ -2,12 +2,15 @@
 
 TextureImporter::TextureImporter()
 {
-
+	
 }
 
-TextureImporter::TextureImporter(std::string filepath)
+TextureImporter::TextureImporter(const char* filepath)
 {
-
+	this-> filepath = filepath;
+	texWidth = 0;
+	texHeight = 0;
+	nrChannels = 0;
 }
 
 TextureImporter::~TextureImporter()
@@ -15,18 +18,28 @@ TextureImporter::~TextureImporter()
 
 }
 
-int TextureImporter::GetWidth()
+int& TextureImporter::GetWidth()
 {
-	return width;
+	return texWidth;
 }
 
-int TextureImporter::GetHeight()
+int& TextureImporter::GetHeight()
 {
-	return height;
+	return texHeight;
 }
 
-int TextureImporter::GetNrChannels()
+int& TextureImporter::GetNrChannels()
 {
 	return nrChannels;
+}
+
+unsigned char* TextureImporter::GetTexData()
+{
+	return data;
+}
+
+const char* TextureImporter::GetFilePath()
+{
+	return filepath;
 }
 
