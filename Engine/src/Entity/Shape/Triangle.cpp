@@ -88,6 +88,8 @@ Triangle::Triangle(float posX, float posY, float posZ, float width, float height
 	indices[0] = 0;
 	indices[1] = 1;
 	indices[2] = 2;
+
+	BindBuffers();
 }
 
 Triangle::~Triangle()
