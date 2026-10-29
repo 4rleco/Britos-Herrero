@@ -30,8 +30,8 @@ public:
 		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
 
 	void BindTexure(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
-		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO, std::string filepath,
-		unsigned int texture, int width, int height, int nrChannels);
+		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO,
+		unsigned int& texture, unsigned char* data, const char* filepath, int& width, int& height, int& nrChannels);
 
 	void SetVPMatrix(float width, float height);
 

@@ -54,12 +54,15 @@ void Renderer::BindBuffers(float* vertices, const int verticiesAmount, unsigned 
 }
 
 void Renderer::BindTexure(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
-	unsigned int& VBO, unsigned int& VAO, unsigned int& EBO, std::string filepath,
-	unsigned int texture, int width, int height, int nrChannels)
+	unsigned int& VBO, unsigned int& VAO, unsigned int& EBO,
+	unsigned int& texture, unsigned char* data, const char* filepath, int& width, int& height, int& nrChannels)
 {
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 	glGenVertexArrays(1, &VAO);
+
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 
 	glBindVertexArray(VAO);
 
@@ -78,27 +81,30 @@ void Renderer::BindTexure(float* vertices, const int verticiesAmount, unsigned i
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 9, (void*)(sizeof(float) * 7));
 	glEnableVertexAttribArray(2);
 
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	// set the texture wrapping parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	// set texture filtering parameters
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	stbi_set_flip_vertically_on_load(true);
 
-	unsigned char* data = stbi_load(filepath.c_str(), &width, &height, &nrChannels, 0);
+	// load image, create texture and generate mipmaps
+	// The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
+	data = stbi_load(filepath, &width, &height, &nrChannels, 4);
 
 	if (data)
 	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
+
+		std::cout << "Texture loaded" << std::endl;
 	}
 	else
 	{
 		std::cout << "Failed to load texture" << std::endl;
 	}
-
 	stbi_image_free(data);
 }
 
