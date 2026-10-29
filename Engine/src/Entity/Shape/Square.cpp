@@ -55,8 +55,8 @@ Square::Square(float posX, float posY, float posZ, float width, float height) :
 	// first triangle
 	indices[0] = 0;
 	indices[1] = 1;
-	indices[2] = 3;
-	
+	indices[2] = 2;
+
 	// Second triangle
 	indices[3] = 1;
 	indices[4] = 2;

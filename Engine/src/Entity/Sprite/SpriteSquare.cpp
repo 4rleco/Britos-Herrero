@@ -1,24 +1,21 @@
 #include "SpriteSquare.h"
 
 SpriteSquare::SpriteSquare() :
-	Sprite(filepath, posX, posY, posZ, width, height)
+	Sprite(" ", posX, posY, posZ, width, height)
 {
-
+	
 }
 
-SpriteSquare::SpriteSquare(std::string filepath, float posX, float posY, float posZ, float width, float height) :
+SpriteSquare::SpriteSquare(const char* filepath, int num, float posX, float posY, float posZ, float width, float height) :
 	Sprite(filepath, posX, posY, posZ, width, height)
 {
-	material.SetFilepath("Sprtie.shader");
-	SetMaterial();
-	material.SetShader();
+	textureImporter = new TextureImporter(filepath);
 
-	textureImporter = TextureImporter(filepath);
+	this->num = num;
 
 	// middle x, y, z	
 
 	// bottom left
-
 	vertices[0] = posX - width;
 	vertices[1] = posY - height; // bottom left = x - width, y - height, z
 	vertices[2] = posZ;
@@ -73,25 +70,30 @@ SpriteSquare::SpriteSquare(std::string filepath, float posX, float posY, float p
 	// first triangle
 	indices[0] = 0;
 	indices[1] = 1;
-	indices[2] = 3;
+	indices[2] = 2;
 
 	// Second triangle
 	indices[3] = 1;
 	indices[4] = 2;
 	indices[5] = 3;
-}
 
-SpriteSquare::SpriteSquare(std::string filepath, float posX, float posY, float posZ, float width, float height,
-	float r, float g, float b, float a) : Sprite(filepath, posX, posY, posZ, width, height, r, g, b, a)
-{
 	material.SetFilepath("Sprite.shader");
 	SetMaterial();
 	material.SetShader();
 
+	BindTexture();
+}
+
+SpriteSquare::SpriteSquare(const char* filepath, int num, float posX, float posY, float posZ, float width, float height,
+	float r, float g, float b, float a) : Sprite(filepath, posX, posY, posZ, width, height, r, g, b, a)
+{
+	textureImporter = new TextureImporter(filepath);
+
+	this->num = num;
+
 	// middle x, y, z	
 
 	// bottom left
-
 	vertices[0] = posX - width;
 	vertices[1] = posY - height; // bottom left = x - width, y - height, z
 	vertices[2] = posZ;
@@ -151,11 +153,18 @@ SpriteSquare::SpriteSquare(std::string filepath, float posX, float posY, float p
 	indices[3] = 1;
 	indices[4] = 2;
 	indices[5] = 3;
+
+	material.SetFilepath("Sprite.shader");
+	SetMaterial();
+	material.SetShader();
+
+	BindTexture();
 }
 
 SpriteSquare::~SpriteSquare()
 {
 	Renderer::GetInstance().DeleteBuffers(VBO, VAO, EBO);
+	Renderer::GetInstance().DeleteTexBuffer(texture);
 }
 
 float* SpriteSquare::GetVerticesArray()
@@ -195,19 +204,14 @@ unsigned int SpriteSquare::GetIndexAmount()
 
 void SpriteSquare::BindTexture()
 {
-	Renderer::GetInstance().BindTexure(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO,
-		filepath, texture,	textureImporter.GetWidth(), textureImporter.GetHeight(), textureImporter.GetNrChannels());
+	Renderer::GetInstance().BindTexure(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO, 
+		texture, textureImporter->GetTexData(), textureImporter->GetFilePath(), 
+		textureImporter->GetWidth(), textureImporter->GetHeight(), textureImporter->GetNrChannels());
 }
 
 void SpriteSquare::Draw()
 {
 	material.UseShader();
 
-	unsigned int transformLoc = glGetUniformLocation(material.GetShader(), "trs");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trs));
-
-	unsigned int projViewLoc = glGetUniformLocation(material.GetShader(), "vp");
-	glUniformMatrix4fv(projViewLoc, 1, GL_FALSE, glm::value_ptr(Renderer::GetInstance().GetVPMatrix()));
-
-	Renderer::GetInstance().DrawSprite(indicesAmount, VAO, texture);
+	Renderer::GetInstance().DrawSprite(material.GetShader(), trs, textureImporter->GetFilePath(), indicesAmount, VAO, texture, num);
 }

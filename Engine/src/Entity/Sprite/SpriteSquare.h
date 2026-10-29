@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Sprite.h"
-#include "../glm/gtc/type_ptr.hpp"
 
 #include "EngineAPI.h"
 
@@ -14,14 +13,16 @@ private:
 	static const int indicesAmount = 6;
 	unsigned int indices[indicesAmount];
 
+	int num;
+
 public:
 	SpriteSquare();
 	
 	//sin color
-	SpriteSquare(std::string filepath, float posX, float posY, float posZ, float width, float height);
+	SpriteSquare(const char* filepath, int num, float posX, float posY, float posZ, float width, float height);
 	
 	// todos los vértices usan el mismo color y transparencia
-	SpriteSquare(std::string filepath, float posX, float posY, float posZ, float width, float height,
+	SpriteSquare(const char* filepath, int num, float posX, float posY, float posZ, float width, float height,
 		float r, float g, float b, float a);
 	~SpriteSquare();
 

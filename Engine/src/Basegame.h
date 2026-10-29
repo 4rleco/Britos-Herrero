@@ -19,6 +19,7 @@ public:
 	int GetWindowHeight();
 
 	virtual void Init();
+	virtual void DeInit() = 0;
 
 	virtual void Update();
 

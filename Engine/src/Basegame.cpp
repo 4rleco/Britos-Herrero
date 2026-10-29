@@ -49,6 +49,8 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 
 	Renderer::GetInstance().CleanData(window.GetWindow());
 
+	DeInit();
+
 	return 0;
 }
 

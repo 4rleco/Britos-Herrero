@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
+#include "../glm/gtc/type_ptr.hpp"
 
 #include "stb_image/stb_image.h"
 
@@ -30,15 +31,16 @@ public:
 		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
 
 	void BindTexure(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
-		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO, std::string filepath,
-		unsigned int texture, int width, int height, int nrChannels);
+		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO,
+		unsigned int& texture, unsigned char* data, const char* filepath, int& width, int& height, int& nrChannels);
 
 	void SetVPMatrix(float width, float height);
 
 	glm::mat4 GetVPMatrix();
 
 	void Draw(int indexAmount, unsigned int& VAO);
-	void DrawSprite(int indexAmount, unsigned int& VAO, unsigned int texture);
+	void DrawSprite(unsigned int shader, glm::mat4 trs, const char* filepath,
+		int indexAmount, unsigned int& VAO, unsigned int& texture, int texNum);
 
 	// Switchs the buffers and configurates the next frame (Needed for the correct working of the program)
 	void UpdateBuffers(GLFWwindow* window);
@@ -46,6 +48,8 @@ public:
 	void CleanWindow();
 
 	void DeleteBuffers(unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
+
+	void DeleteTexBuffer(unsigned int& texture);
 
 	// Cleans all the resources left by the window (Use it when the program ends)
 	void CleanData(GLFWwindow* window);

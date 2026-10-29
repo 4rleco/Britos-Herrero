@@ -10,11 +10,12 @@
 class Game : public BaseGame
 {
 private :
-	Triangle triangle1;
+	Triangle* triangle1;
 	Triangle triangle2;
 	
 	Square square;
-	SpriteSquare sSquare;
+
+	SpriteSquare* sSquare;
 
 	float rotation;
 	float direction;
@@ -25,6 +26,7 @@ public:
 	~Game();
 
 	void Init() override;
+	void DeInit() override;
 	void Update() override;
 	void Draw();
 };
