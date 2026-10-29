@@ -1,13 +1,13 @@
 #include "Sprite.h"
 
-Sprite::Sprite(std::string filepath, float posX, float posY, float posZ,
+Sprite::Sprite(const char* filepath, float posX, float posY, float posZ,
 	float width, float height) :
 	Entity2D(posX, posY, posZ, width, height)
 {
 	
 }
 
-Sprite::Sprite(std::string filepath, float posX, float posY, float posZ, 
+Sprite::Sprite(const char* filepath, float posX, float posY, float posZ,
 	float width, float height,
 	float r, float g, float b, float a) :Entity2D(posX, posY, posZ, width, height, r, g, b, a)
 {
