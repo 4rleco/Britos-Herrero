@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
+#include "../glm/gtc/type_ptr.hpp"
 
 #include "stb_image/stb_image.h"
 
@@ -47,6 +48,8 @@ public:
 	void CleanWindow();
 
 	void DeleteBuffers(unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
+
+	void DeleteTexBuffer(unsigned int& texture);
 
 	// Cleans all the resources left by the window (Use it when the program ends)
 	void CleanData(GLFWwindow* window);

@@ -117,6 +117,7 @@ SpriteTriangle::SpriteTriangle(const char* filepath, float posX, float posY, flo
 SpriteTriangle::~SpriteTriangle()
 {
 	Renderer::GetInstance().DeleteBuffers(VBO, VAO, EBO);
+	Renderer::GetInstance().DeleteTexBuffer(texture);
 }
 
 float* SpriteTriangle::GetVerticesArray()

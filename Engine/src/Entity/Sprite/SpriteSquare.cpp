@@ -162,6 +162,7 @@ SpriteSquare::SpriteSquare(const char* filepath, int num, float posX, float posY
 SpriteSquare::~SpriteSquare()
 {
 	Renderer::GetInstance().DeleteBuffers(VBO, VAO, EBO);
+	Renderer::GetInstance().DeleteTexBuffer(texture);
 }
 
 float* SpriteSquare::GetVerticesArray()
