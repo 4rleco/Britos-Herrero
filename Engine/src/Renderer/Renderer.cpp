@@ -50,7 +50,7 @@ void Renderer::BindBuffers(float* vertices, const int verticiesAmount, unsigned 
 	glEnableVertexAttribArray(0);
 
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 7, (void*)(sizeof(float) * 3));
-	glEnableVertexAttribArray(1);	
+	glEnableVertexAttribArray(1);
 }
 
 void Renderer::BindTexure(float* vertices, const int verticiesAmount, unsigned int* indices, unsigned int indexAmount,
@@ -129,6 +129,7 @@ void Renderer::Draw(int indexAmount, unsigned int& VAO)
 
 void Renderer::DrawSprite(int indexAmount, unsigned int& VAO, unsigned int texture)
 {
+	glActiveTexture(GL_TEXTURE0 + texNum);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
 	glBindVertexArray(VAO);
