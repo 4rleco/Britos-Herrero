@@ -14,12 +14,14 @@ private:
 	static const int indicesAmount = 3;
 	unsigned int indices[indicesAmount];
 
+	int num;
+
 public:
 	SpriteTriangle();
 	//sin color
-	SpriteTriangle(std::string filepath, float posX, float posY, float posZ, float width, float height);
+	SpriteTriangle(const char* filepath, float posX, float posY, float posZ, float width, float height);
 	// todos los vértices usan el mismo color y transparencia
-	SpriteTriangle(std::string filepath, float posX, float posY, float posZ, float width, float height,
+	SpriteTriangle(const char* filepath, float posX, float posY, float posZ, float width, float height,
 		float r, float g, float b, float a);
 	~SpriteTriangle();
 
