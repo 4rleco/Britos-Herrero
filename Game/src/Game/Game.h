@@ -25,6 +25,7 @@ public:
 	~Game();
 
 	void Init() override;
+	void DeInit() override;
 	void Update() override;
 	void Draw();
 };

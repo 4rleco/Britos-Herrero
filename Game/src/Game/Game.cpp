@@ -29,6 +29,13 @@ void Game::Init()
 	direction = 2;
 }
 
+void Game::DeInit()
+{
+	delete triangle1;
+
+	delete sSquare;
+}
+
 
 void Game::Draw()
 {
