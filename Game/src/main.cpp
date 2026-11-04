@@ -1,6 +1,6 @@
 #include "Game/Game.h"
 
-void main()
+int main()
 {
 	Game game = Game();
 
@@ -9,4 +9,6 @@ void main()
 	const char* title = "GAME";
 
 	game.RunEngine(width, height, title);
+
+	return 0;
 }
