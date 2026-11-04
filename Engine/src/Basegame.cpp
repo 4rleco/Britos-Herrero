@@ -18,11 +18,6 @@ void BaseGame::Init()
 
 }
 
-void BaseGame::Update()
-{
-
-}
-
 int BaseGame::RunEngine(int width, int height, const char* title)
 {
 	Window window = Window(width, height, title);

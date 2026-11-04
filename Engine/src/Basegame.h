@@ -21,7 +21,7 @@ public:
 	virtual void Init();
 	virtual void DeInit() = 0;
 
-	virtual void Update();
+	virtual void Update() = 0;
 
 	int RunEngine(int width, int height, const char* title);
 };
