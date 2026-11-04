@@ -70,6 +70,8 @@ float Entity::GetHeight()
 void Entity::SetScale(float x, float y, float z)
 {
 	scale = glm::scale(glm::mat4(1.0f), glm::vec3(x, y, z));
+
+	UpdateTRS();
 }
 
 void Entity::SetRotation(float x, float y, float z)
@@ -81,11 +83,15 @@ void Entity::SetRotation(float x, float y, float z)
 	rotation = glm::rotate(rotation, y, glm::vec3(0.0f, 1.0f, 0.0f));
 
 	rotation = glm::rotate(rotation, z, glm::vec3(0.0f, 0.0f, 1.0f));
+
+	UpdateTRS();
 }
 
 void Entity::SetTranslation(float x, float y, float z)
 {
 	translation = glm::translate(glm::mat4(1.0f), glm::vec3(x, y, z));
+
+	UpdateTRS();
 }
 
 void Entity::UpdateTRS()
