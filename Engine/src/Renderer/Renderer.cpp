@@ -120,8 +120,15 @@ glm::mat4 Renderer::GetVPMatrix()
 	return vp;
 }
 
-void Renderer::Draw(int indexAmount, unsigned int& VAO)
+void Renderer::Draw(unsigned int shader, glm::mat4 trs, int indexAmount, unsigned int& VAO)
 {
+	unsigned int transformLoc = glGetUniformLocation(shader, "trs");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trs));
+
+	unsigned int projViewLoc = glGetUniformLocation(shader, "vp");
+	glUniformMatrix4fv(projViewLoc, 1, GL_FALSE, glm::value_ptr(Renderer::GetInstance().GetVPMatrix()));
+
+
 	glBindVertexArray(VAO);
 
 	glDrawElements(GL_TRIANGLES, indexAmount, GL_UNSIGNED_INT, 0);

@@ -141,11 +141,5 @@ void Triangle::Draw()
 {
 	material.UseShader();
 
-	unsigned int transformLoc = glGetUniformLocation(material.GetShader(), "trs");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trs));
-
-	unsigned int projViewLoc = glGetUniformLocation(material.GetShader(), "vp");
-	glUniformMatrix4fv(projViewLoc, 1, GL_FALSE, glm::value_ptr(Renderer::GetInstance().GetVPMatrix()));
-
-	Renderer::GetInstance().Draw(indicesAmount, VAO);
+	Renderer::GetInstance().Draw(material.GetShader(), trs, indicesAmount, VAO);
 }

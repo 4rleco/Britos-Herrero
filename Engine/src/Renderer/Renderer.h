@@ -38,7 +38,9 @@ public:
 
 	glm::mat4 GetVPMatrix();
 
-	void Draw(int indexAmount, unsigned int& VAO);
+	void Draw(unsigned int shader, glm::mat4 trs, 
+		int indexAmount, unsigned int& VAO);
+
 	void DrawSprite(unsigned int shader, glm::mat4 trs, const char* filepath,
 		int indexAmount, unsigned int& VAO, unsigned int& texture, int texNum);
 
