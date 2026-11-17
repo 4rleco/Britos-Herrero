@@ -1,8 +1,9 @@
 #pragma once
 
-struct UVCoords 
+struct UVCoords
 {
-	float u, v;
+	float u;
+	float v;
 };
 
 class Frame
@@ -11,5 +12,5 @@ public:
 	UVCoords uvCoords[4];
 
 	Frame();
-	~Frame();	
+	~Frame();
 };
