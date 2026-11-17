@@ -2,6 +2,7 @@
 
 #include "Renderer/Renderer.h"
 #include "Window/Window .h"
+#include "Timer/Timer.h"
 
 BaseGame::BaseGame()
 {
@@ -31,10 +32,14 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 
 	Renderer::GetInstance().SetVPMatrix(window.GetWidth(), window.GetHeight());
 
+	Timer::InitClock();
+
 	Init();
 
 	while (!window.ShouldClose())
 	{
+		Timer::UpdateDeltaTime();
+
 		window.Clear();
 
 		Update();
