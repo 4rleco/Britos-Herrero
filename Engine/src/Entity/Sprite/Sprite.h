@@ -2,11 +2,13 @@
 
 #include "../Entity2D.h"
 #include "TextureImporter.h"
+#include "Animation/Animation.h"
 
 class Sprite : public Entity2D
 {
 protected:
 	TextureImporter* textureImporter;
+	Animation* animation;
 
 	unsigned int texture;
 
@@ -25,6 +27,11 @@ public:
 
 	float GetWidth() override;
 	float GetHeight() override;
+
+	virtual Animation* GetAnimation() = 0;
+	virtual void SetAnimation(Animation* anim);
+
+	virtual void UpdateAnimation();
 
 	unsigned int GetTexture();
 };
