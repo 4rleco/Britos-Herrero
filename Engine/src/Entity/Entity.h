@@ -50,7 +50,7 @@ public:
 	ENGINE_API void SetRotation(float x, float y, float z);
 	ENGINE_API void SetTranslation(float x, float y, float z);
 
-	ENGINE_API void UpdateTRS();
+	void UpdateTRS();
 
 	virtual void Draw();
 };
