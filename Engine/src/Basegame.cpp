@@ -3,6 +3,7 @@
 #include "Renderer/Renderer.h"
 #include "Window/Window .h"
 #include "Timer/Timer.h"
+#include "Input/Input.h"
 
 BaseGame::BaseGame()
 {
@@ -34,11 +35,17 @@ int BaseGame::RunEngine(int width, int height, const char* title)
 
 	Timer::InitClock();
 
+	Input::Init(window.GetWindow());
+
 	Init();
 
 	while (!window.ShouldClose())
 	{
 		Timer::UpdateDeltaTime();
+
+		Input::Update();
+
+		Renderer::GetInstance().UpdatePollEvents();
 
 		window.Clear();
 
