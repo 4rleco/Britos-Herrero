@@ -2,11 +2,14 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
 #include "../glm/gtc/type_ptr.hpp"
 
 #include "stb_image/stb_image.h"
+
+#include "EngineAPI.h"
 
 #include <iostream>
 
@@ -37,6 +40,8 @@ public:
 	void SetVPMatrix(float width, float height);
 
 	glm::mat4 GetVPMatrix();
+
+	ENGINE_API float GetDeltaTime();
 
 	void Draw(unsigned int shader, glm::mat4 trs, 
 		int indexAmount, unsigned int& VAO);
