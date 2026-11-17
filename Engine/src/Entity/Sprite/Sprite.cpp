@@ -17,7 +17,6 @@ Sprite::Sprite(const char* filepath, float posX, float posY, float posZ,
 Sprite::~Sprite()
 {
 	delete textureImporter;
-	delete animation;
 }
 
 float Sprite::GetX()
