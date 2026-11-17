@@ -16,6 +16,9 @@ private :
 	Square square;
 
 	SpriteSquare* sSquare;
+	SpriteSquare* sSquare2;
+	Animation walk;
+	Animation walkUp;
 
 	float rotation;
 	float direction;
