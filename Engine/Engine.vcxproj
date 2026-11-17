@@ -158,6 +158,7 @@ xcopy "$(ProjectDir)src\Shaders\Shape.shader" "$(OutDir)" /y/i/s</Command>
     <ClCompile Include="src\Entity\Sprite\Animation\Animation.cpp" />
     <ClCompile Include="src\Entity\Sprite\Animation\Frame.cpp" />
     <ClCompile Include="src\Entity\Sprite\TextureImporter.cpp" />
+    <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Basegame.cpp" />
     <ClCompile Include="src\Entity\Entity.cpp" />
@@ -187,6 +188,7 @@ xcopy "$(ProjectDir)src\Shaders\Shape.shader" "$(OutDir)" /y/i/s</Command>
     <ClInclude Include="src\Entity\Sprite\SpriteSquare.h" />
     <ClInclude Include="src\Entity\Sprite\SpriteTriangle.h" />
     <ClInclude Include="src\Entity\Sprite\TextureImporter.h" />
+    <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\Material\Material.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\stb_image\stb_image.h" />
