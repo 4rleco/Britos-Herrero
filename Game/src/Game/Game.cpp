@@ -23,12 +23,17 @@ void Game::Init()
 
 	walk.AddFrames(0, 64, 64, 64, 256, 256, 1, 4);
 	walkUp.AddFrames(0, 0, 64, 64, 256, 256, 1, 4);
+	
+
+	idle.AddFrame(0, 64, 64, 64, 256, 256, 1);
 
 	rotation = 1.0f;
 	translation = 0.1f;
 	direction = 2;
 
-	sSquare->SetAnimation(&walk);
+	currentAnim = &idle;
+
+	sSquare->SetAnimation(currentAnim);
 	//sSquare2->SetAnimation(&walkUp);
 }
 
@@ -72,6 +77,18 @@ void Game::Update()
 	//
 
 	// Animation
+
+	if (Input::IsKeyPressed(Key::D) && currentAnim != &walk)
+	{
+		currentAnim = &walk;
+		sSquare->SetAnimation(currentAnim);
+	}
+
+	if (Input::IsKeyReleased(Key::D) && currentAnim != &idle)
+	{
+		currentAnim = &idle;
+		sSquare->SetAnimation(currentAnim);
+	}
 
 	//sSquare->GetAnimation()->Update();
 

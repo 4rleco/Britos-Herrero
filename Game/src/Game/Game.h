@@ -6,6 +6,7 @@
 
 #include "Entity/Sprite/SpriteSquare.h"
 #include "Entity/Sprite/SpriteTriangle.h"
+#include "Input/Input.h"
 
 class Game : public BaseGame
 {
@@ -19,6 +20,9 @@ private :
 	SpriteSquare* sSquare2;
 	Animation walk;
 	Animation walkUp;
+	Animation idle;
+
+	Animation* currentAnim;
 
 	float rotation;
 	float direction;
