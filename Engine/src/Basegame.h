@@ -2,6 +2,7 @@
 
 #include "Renderer/Renderer.h"
 #include "Window/Window .h"
+#include "CollisionManager/CollisionManager.h"
 
 #include "EngineAPI.h"
 

@@ -18,8 +18,8 @@ void Game::Init()
 	sSquare = new SpriteSquare("pokemon.png", 0, GetWindowWidth() / 2, GetWindowHeight() / 2, 0.0f,
 		200.0f, 175.0f);
 
-	sSquare2 = new SpriteSquare("LilDallas.jpg", 0, 100, 100, 0.0f,
-		200.0f, 175.0f);
+	sSquare2 = new SpriteSquare("LilDallas.jpg", 0, 50, 50, 0.0f,
+		50.0f, 50.0f);
 
 	walk.AddFrames(0, 64, 64, 64, 256, 256, 1, 4);
 	walkUp.AddFrames(0, 0, 64, 64, 256, 256, 1, 4);
@@ -78,17 +78,24 @@ void Game::Update()
 
 	// Animation
 
-	if (Input::IsKeyPressed(Key::D) && currentAnim != &walk)
+	if (Input::IsKeyPressed(Key::A) && currentAnim != &walk)
 	{
 		currentAnim = &walk;
 		sSquare->SetAnimation(currentAnim);
 	}
 
-	if (Input::IsKeyReleased(Key::D) && currentAnim != &idle)
+	if (Input::IsKeyReleased(Key::A) && currentAnim != &idle)
 	{
 		currentAnim = &idle;
 		sSquare->SetAnimation(currentAnim);
 	}
+
+	if (CollisionManager::CollisionCheck(*sSquare, *sSquare2))
+	{
+		
+	}
+
+	sSquare->SetTranslation(translation * direction, 0.0f, 0.0f);
 
 	//sSquare->GetAnimation()->Update();
 
