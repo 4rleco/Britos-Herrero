@@ -37,6 +37,11 @@ public:
 
 	unsigned int GetIndexAmount();
 
+	Animation* GetAnimation() override;
+	void SetAnimation(Animation* anim) override;
+
+	void UpdateAnimation() override;
+
 	void BindTexture();
 
 	void Draw() override;

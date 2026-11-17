@@ -3,7 +3,7 @@
 SpriteSquare::SpriteSquare() :
 	Sprite(" ", posX, posY, posZ, width, height)
 {
-	
+
 }
 
 SpriteSquare::SpriteSquare(const char* filepath, int num, float posX, float posY, float posZ, float width, float height) :
@@ -202,10 +202,59 @@ unsigned int SpriteSquare::GetIndexAmount()
 	return indicesAmount;
 }
 
+Animation* SpriteSquare::GetAnimation()
+{
+	return animation;
+}
+
+void SpriteSquare::SetAnimation(Animation* anim)
+{
+	anim->Reset();
+	this->animation = anim;
+}
+
+void SpriteSquare::UpdateAnimation()
+{
+	if (animation != nullptr)
+	{
+		animation->Update(); // actualiza el currentFrameIndex
+
+		if (animation->HasFrameChanged())
+		{
+			int frameIndex = animation->GetCurrentFrameIndex();
+			Frame frame = animation->GetFrames()[frameIndex];
+
+			// Actualizamos solo los UVs
+			vertices[7] = frame.uvCoords[0].u;
+			vertices[8] = frame.uvCoords[0].v;
+
+			vertices[16] = frame.uvCoords[1].u;
+			vertices[17] = frame.uvCoords[1].v;
+
+			vertices[25] = frame.uvCoords[2].u;
+			vertices[26] = frame.uvCoords[2].v;
+
+			vertices[34] = frame.uvCoords[3].u;
+			vertices[35] = frame.uvCoords[3].v;
+
+			Renderer::GetInstance().UpdateVertexBuffer(VBO, vertices, verticesAmount);
+
+			std::cout << "Frame Coords:" << std::endl;
+			std::cout << "  0: (" << frame.uvCoords[0].u << ", " << frame.uvCoords[0].v << ")" << std::endl;
+			std::cout << "  1: (" << frame.uvCoords[1].u << ", " << frame.uvCoords[1].v << ")" << std::endl;
+			std::cout << "  2: (" << frame.uvCoords[2].u << ", " << frame.uvCoords[2].v << ")" << std::endl;
+			std::cout << "  3: (" << frame.uvCoords[3].u << ", " << frame.uvCoords[3].v << ")" << std::endl;
+
+		}
+
+	}
+}
+
+
 void SpriteSquare::BindTexture()
 {
-	Renderer::GetInstance().BindTexure(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO, 
-		texture, textureImporter->GetTexData(), textureImporter->GetFilePath(), 
+	Renderer::GetInstance().BindTexure(vertices, verticesAmount, indices, indicesAmount, VBO, VAO, EBO,
+		texture, textureImporter->GetTexData(), textureImporter->GetFilePath(),
 		textureImporter->GetWidth(), textureImporter->GetHeight(), textureImporter->GetNrChannels());
 }
 
