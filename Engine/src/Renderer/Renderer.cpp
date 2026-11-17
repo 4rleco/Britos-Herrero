@@ -120,11 +120,6 @@ glm::mat4 Renderer::GetVPMatrix()
 	return vp;
 }
 
-float Renderer::GetDeltaTime()
-{
-	return glfwGetTime();
-}
-
 void Renderer::Draw(unsigned int shader, glm::mat4 trs, int indexAmount, unsigned int& VAO)
 {
 	unsigned int transformLoc = glGetUniformLocation(shader, "trs");

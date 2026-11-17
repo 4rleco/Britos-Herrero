@@ -41,8 +41,6 @@ public:
 
 	glm::mat4 GetVPMatrix();
 
-	ENGINE_API float GetDeltaTime();
-
 	void Draw(unsigned int shader, glm::mat4 trs, 
 		int indexAmount, unsigned int& VAO);
 
