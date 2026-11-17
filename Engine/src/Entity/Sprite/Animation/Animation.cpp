@@ -36,17 +36,22 @@ void Animation::AddFrame(float frameX, float frameY, float frameWidth, float fra
 	totalDuration = durationInSecs * 1000.0f;
 
 	Frame newFrame;
+
+	// Bottom left
 	newFrame.uvCoords[0].u = frameX / textureWidth;
-	newFrame.uvCoords[0].v = (frameY + frameHeight) / textureHeight;
+	newFrame.uvCoords[0].v = frameY / textureHeight;
 
+	// Bottom right
 	newFrame.uvCoords[1].u = (frameX + frameWidth) / textureWidth;
-	newFrame.uvCoords[1].v = (frameY + frameHeight) / textureHeight;
+	newFrame.uvCoords[1].v = frameY / textureHeight;
 
+	// Top left
 	newFrame.uvCoords[2].u = frameX / textureWidth;
-	newFrame.uvCoords[2].v = frameY / textureHeight;
+	newFrame.uvCoords[2].v = (frameY + frameHeight) / textureHeight;
 
+	// Top right
 	newFrame.uvCoords[3].u = (frameX + frameWidth) / textureWidth;
-	newFrame.uvCoords[3].v = frameY / textureHeight;
+	newFrame.uvCoords[3].v = (frameY + frameHeight) / textureHeight;
 
 	frames.push_back(newFrame);
 }
