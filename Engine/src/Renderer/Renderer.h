@@ -53,6 +53,8 @@ public:
 	// Switchs the buffers and configurates the next frame (Needed for the correct working of the program)
 	void UpdateBuffers(GLFWwindow* window);
 
+	void UpdatePollEvents();
+
 	void CleanWindow();
 
 	void DeleteBuffers(unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);

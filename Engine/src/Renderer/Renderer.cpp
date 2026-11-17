@@ -163,8 +163,11 @@ void Renderer::DrawSprite(unsigned int shader, glm::mat4 trs, const char* filepa
 /* Switchs the buffers and configurates the next frame (Needed for the correct working of the program) */
 void Renderer::UpdateBuffers(GLFWwindow* window)
 {
-	glfwSwapBuffers(window);
+	glfwSwapBuffers(window);	
+}
 
+void Renderer::UpdatePollEvents()
+{
 	glfwPollEvents();
 }
 
