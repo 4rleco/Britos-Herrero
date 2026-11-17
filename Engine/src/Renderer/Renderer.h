@@ -37,11 +37,14 @@ public:
 		unsigned int& VBO, unsigned int& VAO, unsigned int& EBO,
 		unsigned int& texture, unsigned char* data, const char* filepath, int& width, int& height, int& nrChannels);
 
+	void UpdateVertexBuffer(unsigned int VBO,
+		float* vertices, int verticesAmount);
+
 	void SetVPMatrix(float width, float height);
 
 	glm::mat4 GetVPMatrix();
 
-	void Draw(unsigned int shader, glm::mat4 trs, 
+	void Draw(unsigned int shader, glm::mat4 trs,
 		int indexAmount, unsigned int& VAO);
 
 	void DrawSprite(unsigned int shader, glm::mat4 trs, const char* filepath,

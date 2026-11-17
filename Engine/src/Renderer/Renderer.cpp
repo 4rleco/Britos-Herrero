@@ -108,6 +108,13 @@ void Renderer::BindTexure(float* vertices, const int verticiesAmount, unsigned i
 	stbi_image_free(data);
 }
 
+void Renderer::UpdateVertexBuffer(unsigned int VBO, float* vertices, int verticesAmount)
+{
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float) * verticesAmount, vertices);
+}
+
 void Renderer::SetVPMatrix(float width, float height)
 {
 	proj = glm::ortho(0.0f, width, 0.0f, height, -100.0f, 100.0f);
