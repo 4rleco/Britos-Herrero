@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include "Timer/Timer.h"
 
 using namespace std;
 
@@ -77,9 +78,9 @@ void Animation::AddFrames(float frameX, float frameY, float frameWidth, float fr
 	}
 }
 
-void Animation::Update(float deltaTime)
+void Animation::Update()
 {
-	currentTime += deltaTime;
+	currentTime += Timer::GetDeltaTime();
 
 	cout << endl << "currentTime: " << currentTime << endl;
 	cout << "currentFrameIndex: " << currentFrameIndex << endl;

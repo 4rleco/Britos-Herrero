@@ -33,7 +33,7 @@ public:
 		float textureWidth, float textureHeight,
 		float durationInSecs, int framesCount);
 
-	ENGINE_API void Update(float deltaTime);
+	ENGINE_API void Update();
 
 	void Reset();
 
