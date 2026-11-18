@@ -39,9 +39,12 @@ public:
 		float r, float g, float b, float a);
 	virtual ~Entity();
 
-	virtual float GetX();
-	virtual float GetY();
-	virtual float GetZ();
+	virtual void SetX(float x) = 0;
+	virtual float GetX() = 0;
+	virtual void SetY(float y) = 0;
+	virtual float GetY() = 0;
+	virtual void SetZ(float z) = 0;
+	virtual float GetZ() = 0;
 
 	virtual float GetWidth();
 	virtual float GetHeight();

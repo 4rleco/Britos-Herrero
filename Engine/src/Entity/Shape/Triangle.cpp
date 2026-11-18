@@ -102,14 +102,29 @@ float* Triangle::GetVerticesArray()
 	return vertices;
 }
 
+void Triangle::SetX(float x)
+{
+	posX = x;
+}
+
 float Triangle::GetX()
 {
 	return posX;
 }
 
+void Triangle::SetY(float y)
+{
+	posY = y;
+}
+
 float Triangle::GetY()
 {
 	return posY;
+}
+
+void Triangle::SetZ(float z)
+{
+	posZ = z;
 }
 
 float Triangle::GetZ()

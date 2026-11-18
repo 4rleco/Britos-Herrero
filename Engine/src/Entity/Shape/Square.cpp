@@ -130,14 +130,29 @@ float* Square::GetVerticesArray()
 	return vertices;
 }
 
+void Square::SetX(float x)
+{
+	posX = x;
+}
+
 float Square::GetX()
 {
 	return posX;
 }
 
+void Square::SetY(float y)
+{
+	posY = y;
+}
+
 float Square::GetY()
 {
 	return posY;
+}
+
+void Square::SetZ(float z)
+{
+	posZ = z;
 }
 
 float Square::GetZ()

@@ -27,14 +27,22 @@ public:
 
 	float* GetVerticesArray();
 
+	void SetX(float x) override;
 	float GetX() override;
+	void SetY(float y) override;
 	float GetY() override;
+	void SetZ(float z) override;
 	float GetZ() override;
 
 	float GetWidth() override;
 	float GetHeight() override;
 
 	unsigned int GetIndexAmount();
+
+	Animation* GetAnimation() override;
+	void SetAnimation(Animation* anim) override;
+
+	void UpdateAnimation() override;
 
 	void BindTexture();
 

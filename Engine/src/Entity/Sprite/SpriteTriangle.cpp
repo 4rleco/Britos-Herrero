@@ -135,14 +135,29 @@ float* SpriteTriangle::GetVerticesArray()
 	return vertices;
 }
 
+void SpriteTriangle::SetX(float x)
+{
+	posX = x;
+}
+
 float SpriteTriangle::GetX()
 {
 	return posX;
 }
 
+void SpriteTriangle::SetY(float y)
+{
+	posY = y;
+}
+
 float SpriteTriangle::GetY()
 {
 	return posY;
+}
+
+void SpriteTriangle::SetZ(float z)
+{
+	posZ = z;
 }
 
 float SpriteTriangle::GetZ()
@@ -163,6 +178,54 @@ float SpriteTriangle::GetHeight()
 unsigned int SpriteTriangle::GetIndexAmount()
 {
 	return 0;
+}
+
+Animation* SpriteTriangle::GetAnimation()
+{
+	return animation;
+}
+
+void SpriteTriangle::SetAnimation(Animation* anim)
+{
+	anim->Reset();
+	this->animation = anim;
+}
+
+void SpriteTriangle::UpdateAnimation()
+{
+	if (animation != nullptr)
+	{
+		animation->Update(); // actualiza el currentFrameIndex
+
+		if (animation->HasFrameChanged())
+		{
+			int frameIndex = animation->GetCurrentFrameIndex();
+			Frame frame = animation->GetFrames()[frameIndex];
+
+			// Actualizamos solo los UVs
+			vertices[7] = frame.uvCoords[0].u;
+			vertices[8] = frame.uvCoords[0].v;
+
+			vertices[16] = frame.uvCoords[1].u;
+			vertices[17] = frame.uvCoords[1].v;
+
+			vertices[25] = frame.uvCoords[2].u;
+			vertices[26] = frame.uvCoords[2].v;
+
+			vertices[34] = frame.uvCoords[3].u;
+			vertices[35] = frame.uvCoords[3].v;
+
+			Renderer::GetInstance().UpdateVertexBuffer(VBO, vertices, verticesAmount);
+
+			std::cout << "Frame Coords:" << std::endl;
+			std::cout << "  0: (" << frame.uvCoords[0].u << ", " << frame.uvCoords[0].v << ")" << std::endl;
+			std::cout << "  1: (" << frame.uvCoords[1].u << ", " << frame.uvCoords[1].v << ")" << std::endl;
+			std::cout << "  2: (" << frame.uvCoords[2].u << ", " << frame.uvCoords[2].v << ")" << std::endl;
+			std::cout << "  3: (" << frame.uvCoords[3].u << ", " << frame.uvCoords[3].v << ")" << std::endl;
+
+		}
+
+	}
 }
 
 void SpriteTriangle::BindTexture()

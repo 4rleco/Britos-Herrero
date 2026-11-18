@@ -25,8 +25,11 @@ public:
 
 	float* GetVerticesArray();
 
+	void SetX(float x) override;
 	float GetX() override;
+	void SetY(float y) override;
 	float GetY() override;
+	void SetZ(float z) override;
 	float GetZ() override;
 
 	float GetWidth() override;

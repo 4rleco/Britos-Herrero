@@ -172,14 +172,29 @@ float* SpriteSquare::GetVerticesArray()
 	return vertices;
 }
 
+void SpriteSquare::SetX(float x)
+{
+	posX = x;
+}
+
 float SpriteSquare::GetX()
 {
 	return posX;
 }
 
+void SpriteSquare::SetY(float y)
+{
+	posY = y;
+}
+
 float SpriteSquare::GetY()
 {
 	return posY;
+}
+
+void SpriteSquare::SetZ(float z)
+{
+	posZ = z;
 }
 
 float SpriteSquare::GetZ()
