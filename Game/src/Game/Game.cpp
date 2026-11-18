@@ -12,110 +12,96 @@ Game::~Game()
 
 void Game::Init()
 {
-	triangle1 = new Triangle(GetWindowWidth() / 2, GetWindowHeight() / 2, 0.0f,
-		200.0f, 200.0f, 0.0f, 0.0f, 1.0f, 0.5f);
+	knucles = new SpriteSquare("Knuckles_Sprite_Sheet.png", 0, 200, 200, 0.0f,
+		100.0f, 100.0f);
 
-	sSquare = new SpriteSquare("pokemon.png", 0, GetWindowWidth() / 2, GetWindowHeight() / 2, 0.0f,
-		200.0f, 175.0f);
+	rock = new SpriteSquare("Rock.png", 0, 500, 200, 0.0f,
+		50, 50);
 
-	sSquare2 = new SpriteSquare("LilDallas.jpg", 0, 50, 150, 0.0f,
-		50.0f, 50.0f);
+	knuclesSpriteWidth = 646;
+	knuclesSpriteHeight = 473;
 
-	walkLeft.AddFrames(0, 128, 64, 64, 256, 256, 1, 4);
-	walkRight.AddFrames(0, 64, 64, 64, 256, 256, 1, 4);
+	idle.AddFrame(0, 473, 35, 35, 646, 473, 1);
+	walkRight.AddFrames(0, 392, 40.5f, 35, knuclesSpriteWidth, knuclesSpriteHeight, 1, 8);
+	spin.AddFrames(0, 307.8f, 32.5f, 35, knuclesSpriteWidth, knuclesSpriteHeight, 0.7, 6);
+	wallCollision.AddFrames(422, 347, 35, 35, knuclesSpriteWidth, knuclesSpriteHeight, 1, 4);
 
 
-	idle.AddFrame(0, 128, 64, 64, 256, 256, 1);
-
-	rotation = 1.0f;
 	translation = 1.0f;
-	direction = 2;
+	direction = 0;
 
-	currentAnim = &idle;
+	knuclesCurrentAnim = &idle;
 
-	sSquare->SetAnimation(currentAnim);
-	//sSquare2->SetAnimation(&walkUp);
+	knucles->SetAnimation(knuclesCurrentAnim);
 
-	currentPositionX = sSquare->GetX();
-	currentPositionY = sSquare->GetY();
+	currentPositionX = knucles->GetX();
+	currentPositionY = knucles->GetY();
 }
 
 void Game::DeInit()
 {
-	delete triangle1;
-
-	delete sSquare;
-	delete sSquare2;
+	delete knucles;
 }
 
 
 void Game::Draw()
 {
-	sSquare->Draw();
-	sSquare2->Draw();
-
-	triangle1->Draw();
+	knucles->Draw();
 }
 
 
 void Game::Update()
 {
-	rotation += 1;
-
-	//shape
-	//if (triangle1->GetX() >= GetWindowWidth() + triangle1->GetWidth())
-	//{
-	//	direction = -1.0f;
-	//}
-	//else if (triangle1->GetX() <= 0 - triangle1->GetWidth())
-	//{
-	//	direction = 1.0f;
-	//}
-	//
-	//triangle1->SetScale(0.5f, 0.5f, 1.0f);
-	//
-	//triangle1->SetRotation(0.0f, 0.0f, glm::radians(rotation));
-	//
-	//triangle1->SetTranslation(translation * direction, 0.0f, 0.0f);
-	//
-
 	// Animation
 
 
-	previousPositionX = sSquare->GetX();
-	previousPositionY = sSquare->GetY();
+	previousPositionX = knucles->GetX();
+	previousPositionY = knucles->GetY();
 
-	if (Input::IsKeyPressed(Key::A) && currentAnim != &walkLeft)
+	/*if (Input::IsKeyPressed(Key::A) && currentAnim != &walkLeft)
 	{
 		currentAnim = &walkLeft;
 
 		direction = -1;
 
 		sSquare->SetAnimation(currentAnim);
+	}*/
+
+	if (Input::IsKeyPressed(Key::Z))
+	{
+		rock->SetAnimation(&staticRock);
 	}
 
-	if (Input::IsKeyPressed(Key::D) && currentAnim != &walkRight)
+	if (Input::IsKeyDown(Key::D) && knuclesCurrentAnim != &walkRight)
 	{
-		currentAnim = &walkRight;
+		knuclesCurrentAnim = &walkRight;
 
 		direction = 1;
 
-		sSquare->SetAnimation(currentAnim);
+		knucles->SetAnimation(knuclesCurrentAnim);
 	}
 
-	if ((Input::IsKeyReleased(Key::A) || Input::IsKeyReleased(Key::D)) && currentAnim != &idle)
+	if (Input::IsKeyDown(Key::E) && knuclesCurrentAnim != &spin)
 	{
-		currentAnim = &idle;
+		knuclesCurrentAnim = &spin;
+
+		knucles->SetAnimation(knuclesCurrentAnim);
+	}
+
+	if ((Input::IsKeyReleased(Key::D) || Input::IsKeyReleased(Key::E)) && 
+		knuclesCurrentAnim != &idle && knuclesCurrentAnim != &wallCollision)
+	{
+		knuclesCurrentAnim = &idle;
 
 		direction = 0;
 
-		sSquare->SetAnimation(currentAnim);
+		knucles->SetAnimation(knuclesCurrentAnim);
 	}
+	
+	knucles->SetTranslation(translation * direction, 0.0f, 0.0f);
 
-	sSquare->SetTranslation(translation * direction, 0.0f, 0.0f);
-
-	currentPositionX = sSquare->GetX();
-	currentPositionY = sSquare->GetY();
+	currentPositionX = knucles->GetX();
+	currentPositionY = knucles->GetY();
 
 	if (collisionManager.CollisionCheck(sSquare, sSquare2))
 	{
@@ -127,7 +113,9 @@ void Game::Update()
 	}
 	//sSquare->GetAnimation()->Update();
 
-	sSquare->UpdateAnimation();
+
+
+	knucles->UpdateAnimation();
 	//sSquare2->UpdateAnimation();
 	//
 

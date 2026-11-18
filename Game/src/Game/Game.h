@@ -11,18 +11,14 @@
 class Game : public BaseGame
 {
 private :
-	Triangle* triangle1;
-	Triangle triangle2;
-	
-	Square square;
+	SpriteSquare* knucles;
 
-	SpriteSquare* sSquare;
-	SpriteSquare* sSquare2;
-	Animation walkLeft;
+	Animation* knuclesCurrentAnim;
 	Animation walkRight;
+	Animation spin;
 	Animation idle;
+	Animation wallCollision;
 
-	Animation* currentAnim;
 
 	float rotation;
 	float direction;
@@ -33,6 +29,9 @@ private :
 
 	float previousPositionX;
 	float previousPositionY;
+
+	float knuclesSpriteWidth;
+	float knuclesSpriteHeight;
 
 public:
 	Game();
