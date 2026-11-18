@@ -8,9 +8,11 @@
 
 class ENGINE_API BaseGame
 {
-private:
+protected:
 	int windowWidth;
 	int windowHeight;
+
+	CollisionManager collisionManager;
 
 public:
 	BaseGame();
