@@ -18,8 +18,8 @@ private :
 
 	SpriteSquare* sSquare;
 	SpriteSquare* sSquare2;
-	Animation walk;
-	Animation walkUp;
+	Animation walkLeft;
+	Animation walkRight;
 	Animation idle;
 
 	Animation* currentAnim;
@@ -27,6 +27,12 @@ private :
 	float rotation;
 	float direction;
 	float translation;
+
+	float currentPositionX;
+	float currentPositionY;
+
+	float previousPositionX;
+	float previousPositionY;
 
 public:
 	Game();

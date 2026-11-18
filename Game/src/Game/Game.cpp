@@ -18,23 +18,26 @@ void Game::Init()
 	sSquare = new SpriteSquare("pokemon.png", 0, GetWindowWidth() / 2, GetWindowHeight() / 2, 0.0f,
 		200.0f, 175.0f);
 
-	sSquare2 = new SpriteSquare("LilDallas.jpg", 0, 50, 50, 0.0f,
+	sSquare2 = new SpriteSquare("LilDallas.jpg", 0, 50, 150, 0.0f,
 		50.0f, 50.0f);
 
-	walk.AddFrames(0, 64, 64, 64, 256, 256, 1, 4);
-	walkUp.AddFrames(0, 0, 64, 64, 256, 256, 1, 4);
-	
+	walkLeft.AddFrames(0, 128, 64, 64, 256, 256, 1, 4);
+	walkRight.AddFrames(0, 64, 64, 64, 256, 256, 1, 4);
 
-	idle.AddFrame(0, 64, 64, 64, 256, 256, 1);
+
+	idle.AddFrame(0, 128, 64, 64, 256, 256, 1);
 
 	rotation = 1.0f;
-	translation = 0.1f;
+	translation = 1.0f;
 	direction = 2;
 
 	currentAnim = &idle;
 
 	sSquare->SetAnimation(currentAnim);
 	//sSquare2->SetAnimation(&walkUp);
+
+	currentPositionX = sSquare->GetX();
+	currentPositionY = sSquare->GetY();
 }
 
 void Game::DeInit()
@@ -78,25 +81,50 @@ void Game::Update()
 
 	// Animation
 
-	if (Input::IsKeyPressed(Key::A) && currentAnim != &walk)
+
+	previousPositionX = sSquare->GetX();
+	previousPositionY = sSquare->GetY();
+
+	if (Input::IsKeyPressed(Key::A) && currentAnim != &walkLeft)
 	{
-		currentAnim = &walk;
+		currentAnim = &walkLeft;
+
+		direction = -1;
+
 		sSquare->SetAnimation(currentAnim);
 	}
 
-	if (Input::IsKeyReleased(Key::A) && currentAnim != &idle)
+	if (Input::IsKeyPressed(Key::D) && currentAnim != &walkRight)
+	{
+		currentAnim = &walkRight;
+
+		direction = 1;
+
+		sSquare->SetAnimation(currentAnim);
+	}
+
+	if ((Input::IsKeyReleased(Key::A) || Input::IsKeyReleased(Key::D)) && currentAnim != &idle)
 	{
 		currentAnim = &idle;
-		sSquare->SetAnimation(currentAnim);
-	}
 
-	if (CollisionManager::CollisionCheck(*sSquare, *sSquare2))
-	{
-		
+		direction = 0;
+
+		sSquare->SetAnimation(currentAnim);
 	}
 
 	sSquare->SetTranslation(translation * direction, 0.0f, 0.0f);
 
+	currentPositionX = sSquare->GetX();
+	currentPositionY = sSquare->GetY();
+
+	if (collisionManager.CollisionCheck(sSquare, sSquare2))
+	{
+		sSquare->SetX(previousPositionX);
+		sSquare->SetY(previousPositionY);
+
+		currentPositionX = previousPositionX;
+		currentPositionY = previousPositionY;
+	}
 	//sSquare->GetAnimation()->Update();
 
 	sSquare->UpdateAnimation();
