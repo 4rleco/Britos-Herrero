@@ -6,5 +6,5 @@
 class CollisionManager
 {
 public:
-	static bool CollisionCheck(Entity2D entity, Entity2D other);
+	ENGINE_API bool CollisionCheck(Entity2D* entity, Entity2D* other);
 };
