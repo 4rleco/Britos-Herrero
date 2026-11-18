@@ -23,8 +23,6 @@ private :
 	SpriteSquare* rock;
 	Animation staticRock;
 
-
-	float rotation;
 	float direction;
 	float translation;
 

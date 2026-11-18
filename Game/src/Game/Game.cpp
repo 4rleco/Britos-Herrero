@@ -62,15 +62,6 @@ void Game::Update()
 	previousPositionX = knucles->GetX();
 	previousPositionY = knucles->GetY();
 
-	/*if (Input::IsKeyPressed(Key::A) && currentAnim != &walkLeft)
-	{
-		currentAnim = &walkLeft;
-
-		direction = -1;
-
-		sSquare->SetAnimation(currentAnim);
-	}*/
-
 	if (Input::IsKeyPressed(Key::Z))
 	{
 		rock->SetAnimation(&staticRock);
@@ -81,6 +72,18 @@ void Game::Update()
 		knuclesCurrentAnim = &walkRight;
 
 		direction = 1;
+		knucles->SetRotation(0.0f, 0.0f, 0);
+
+		knucles->SetAnimation(knuclesCurrentAnim);
+	}
+
+	if (Input::IsKeyDown(Key::A) && knuclesCurrentAnim != &walkRight)
+	{
+		knuclesCurrentAnim = &walkRight;
+
+		direction = -1;
+
+		knucles->SetRotation(0.0f, -180.0f, 0);
 
 		knucles->SetAnimation(knuclesCurrentAnim);
 	}
@@ -92,7 +95,7 @@ void Game::Update()
 		knucles->SetAnimation(knuclesCurrentAnim);
 	}
 
-	if ((Input::IsKeyReleased(Key::D) || Input::IsKeyReleased(Key::E)) && 
+	if ((Input::IsKeyReleased(Key::D) || Input::IsKeyReleased(Key::E)) &&
 		knuclesCurrentAnim != &idle && knuclesCurrentAnim != &wallCollision)
 	{
 		knuclesCurrentAnim = &idle;
@@ -101,7 +104,7 @@ void Game::Update()
 
 		knucles->SetAnimation(knuclesCurrentAnim);
 	}
-	
+
 	knucles->SetTranslation(translation * direction, 0.0f, 0.0f);
 
 	currentPositionX = knucles->GetX();
@@ -109,23 +112,23 @@ void Game::Update()
 
 	if (collisionManager.CollisionCheck(knucles, rock) && knuclesCurrentAnim != &wallCollision)
 	{
-		knuclesCurrentAnim = &wallCollision;
+		if (Input::IsKeyDown(Key::D))
+		{
+			knuclesCurrentAnim = &wallCollision;
+		}
 
 		direction = 0;
 
 		knucles->SetX(previousPositionX);
 		knucles->SetY(previousPositionY);
 
+		rock->SetTranslation(translation, 0.0f, 0.0f);
 		knucles->SetAnimation(knuclesCurrentAnim);
 	}
-
-
-
 	knucles->UpdateAnimation();
 	rock->UpdateAnimation();
 	//sSquare2->UpdateAnimation();
 	//
-
 
 	Draw();
 }
