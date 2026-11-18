@@ -26,12 +26,14 @@ void Game::Init()
 	spin.AddFrames(0, 307.8f, 32.5f, 35, knuclesSpriteWidth, knuclesSpriteHeight, 0.7, 6);
 	wallCollision.AddFrames(422, 347, 35, 35, knuclesSpriteWidth, knuclesSpriteHeight, 1, 4);
 
+	staticRock.AddFrame(75, 160, 50, 50, 244, 207, 1);
 
 	translation = 1.0f;
 	direction = 0;
 
 	knuclesCurrentAnim = &idle;
 
+	rock->SetAnimation(&staticRock);
 	knucles->SetAnimation(knuclesCurrentAnim);
 
 	currentPositionX = knucles->GetX();
@@ -41,12 +43,14 @@ void Game::Init()
 void Game::DeInit()
 {
 	delete knucles;
+	delete rock;
 }
 
 
 void Game::Draw()
 {
 	knucles->Draw();
+	rock->Draw();
 }
 
 
@@ -116,6 +120,7 @@ void Game::Update()
 
 
 	knucles->UpdateAnimation();
+	rock->UpdateAnimation();
 	//sSquare2->UpdateAnimation();
 	//
 
