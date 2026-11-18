@@ -107,15 +107,17 @@ void Game::Update()
 	currentPositionX = knucles->GetX();
 	currentPositionY = knucles->GetY();
 
-	if (collisionManager.CollisionCheck(sSquare, sSquare2))
+	if (collisionManager.CollisionCheck(knucles, rock) && knuclesCurrentAnim != &wallCollision)
 	{
-		sSquare->SetX(previousPositionX);
-		sSquare->SetY(previousPositionY);
+		knuclesCurrentAnim = &wallCollision;
 
-		currentPositionX = previousPositionX;
-		currentPositionY = previousPositionY;
+		direction = 0;
+
+		knucles->SetX(previousPositionX);
+		knucles->SetY(previousPositionY);
+
+		knucles->SetAnimation(knuclesCurrentAnim);
 	}
-	//sSquare->GetAnimation()->Update();
 
 
 
